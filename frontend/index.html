@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Health Prediction System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- ================= FORM PAGE ================= -->
+<div id="formPage" class="form-container">
+
+  <!-- LEFT HERO -->
+  <div class="hero">
+    <div class="hero-badge" id="heroBadge">🌿 AI HEALTH PREDICTION SYSTEM</div>
+
+    <div class="lang-bar">
+      <button onclick="setLang('en')" id="enBtn" class="active">EN</button>
+      <button onclick="setLang('si')" id="siBtn">සිංහල</button>
+    </div>
+
+    <div class="hero-content">
+      <h1 id="heroTitle">Live <em>Healthy</em></h1>
+      <p class="hero-sub" id="heroSub">PERSONALIZED AI HEALTH ANALYSIS</p>
+
+      <div class="hero-stats">
+        <div class="stat"><span>12+</span><small id="stat1">Health Metrics</small></div>
+        <div class="stat"><span>7-Day</span><small id="stat2">Meal Plans</small></div>
+        <div class="stat"><span>100%</span><small id="stat3">Personalized</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT FORM -->
+  <div class="form-box">
+    <div class="form-card">
+
+      <h2>Health Risk Predictor</h2>
+      <p class="subtitle">Enter your details</p>
+
+      <!-- Row -->
+      <div class="form-row">
+        <div class="form-group">
+          <label id="ageLabel">Age</label>
+          <input id="age" type="number">
+        </div>
+
+        <div class="form-group">
+          <label id="genderLabel">Gender</label>
+          <select id="gender">
+            <option value="">Select</option>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Row -->
+      <div class="form-row">
+        <div class="form-group">
+          <label id="heightLabel">Height (cm)</label>
+          <input id="height" type="number">
+        </div>
+
+        <div class="form-group">
+          <label id="weightLabel">Weight (kg)</label>
+          <input id="weight" type="number">
+        </div>
+      </div>
+
+      <!-- Diet -->
+      <div class="form-group">
+        <label id="mealLabel">Diet Type</label>
+        <select id="meals">
+          <option value="">Select</option>
+          <option value="0">Vegetarian</option>
+          <option value="1">Non-Vegetarian</option>
+        </select>
+      </div>
+
+      <!-- Activity -->
+      <div class="form-group">
+        <label id="activityLabel">Activity</label>
+        <select id="activity">
+          <option value="0">Low</option>
+          <option value="1">Moderate</option>
+          <option value="2">High</option>
+        </select>
+      </div>
+
+      <!-- Row -->
+      <div class="form-row">
+        <div class="form-group">
+          <label id="addictionLabel">Addiction</label>
+          <select id="addiction">
+            <option value="0">No</option>
+            <option value="1">Smoking</option>
+            <option value="2">Alcohol</option>
+            <option value="3">Both</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="pregnantRow">
+          <label id="pregnantLabel">Pregnant</label>
+          <select id="pregnant">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- BUTTON -->
+      <button type="button" onclick="predict()" id="predictBtn">
+        ✦ Predict Health
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ================= RESULT PAGE ================= -->
+<div id="resultPage" class="hidden dashboard">
+
+  <div class="health-card" id="message"></div>
+
+  <div class="top-section center-box">
+    <h1 id="risk"></h1>
+    <h2>📊 BMI: <span id="bmi"></span></h2>
+  </div>
+
+  <div class="box center-box">
+    <h3 id="bmiTitle">BMI Status</h3>
+
+    <div class="bmi-gauge">
+      <div id="bmiPointer"></div>
+    </div>
+
+    <div class="bmi-labels" id="bmiLabels">
+      <span>Underweight</span>
+      <span>Normal</span>
+      <span>Overweight</span>
+      <span>Obese</span>
+    </div>
+
+    <h1 id="bmiValue"></h1>
+  </div>
+
+  <div class="box">
+    <h3 id="waterTitle">💧 Daily Water Plan</h3>
+    <h2 id="waterTotal"></h2>
+    <ul id="waterPlan"></ul>
+  </div>
+
+  <div class="main-grid">
+
+    <div class="box">
+      <h3 id="conditionTitle">⚠️ Lifestyle Risk Factors</h3>
+      <ul id="conditions"></ul>
+    </div>
+
+    <div class="box">
+      <h3 id="pcosTitle">🧬 PCOS Screening</h3>
+      <ul id="pcos"></ul>
+    </div>
+
+    <div class="box">
+      <h3>📊 BMI Related Risks</h3>
+      <ul id="bmiRisks"></ul>
+    </div>
+    <div class="box">
+      <h2 id="womenTitle">🎗 Women's Health Guidance</h2>
+      <div id="womenAlert"></div>
+      <div id="womenRiskBox"></div>
+    </div>
+</div>
+  <div class="box">
+    <h2 id="nutritionTitle">Nutrition Breakdown</h2>
+    <div id="nutritionBreakdown"></div>
+  </div>
+
+  <div id="cravingsBox"></div>
+
+  <div class="box">
+    <h3>🍽️ Sri Lankan Meal Plan</h3>
+
+    <div id="calorieCard" class="card"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Breakfast</th>
+          <th>Lunch</th>
+          <th>Snack</th>
+          <th>Dinner</th>
+        </tr>
+      </thead>
+      <tbody id="mealTable"></tbody>
+    </table>
+  </div>
+
+  <div class="box">
+    <h3 id="exerciseTitle">🏃 Exercise Plan</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Workout</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="exerciseTable"></tbody>
+    </table>
+  </div>
+
+  <div class="box">
+    <h3>📊 Daily Calorie Comparison</h3>
+    <canvas id="calorieChart" height="120"></canvas>
+  </div>
+
+  <div class="bottom-grid">
+    <div class="box">
+      <h3>🍎 Recommended Foods</h3>
+      <ul id="foods"></ul>
+    </div>
+
+    <div class="box">
+      <h3>🚫 Avoid Foods</h3>
+      <ul id="avoid"></ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>💊 Supplements</h3>
+    <ul id="supplements"></ul>
+  </div>
+
+  <div class="box">
+    <h3>🔔 Reminders</h3>
+    <div id="reminders" class="reminder-grid"></div>
+  </div>
+
+  <div class="box warning-card">
+    <h3>⚠ Critical Warnings</h3>
+    <ul id="warnings"></ul>
+  </div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <button onclick="goBack()" id="backBtn">← Back</button>
+  </div>
+
+</div>
+
+<!-- CHAT -->
+<div class="chat-toggle" onclick="toggleChat()">💬</div>
+
+<div class="chatbox hidden" id="chatbox">
+  <div class="chat-header" id="chatHeader">🤖 Health Assistant</div>
+  <div class="chat-body" id="chatBody"></div>
+
+  <div class="chat-input">
+    <input id="chatInput" placeholder="Ask something...">
+    <button onclick="sendMessage()" id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

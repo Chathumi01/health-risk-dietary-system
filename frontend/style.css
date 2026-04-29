@@ -1,0 +1,698 @@
+/* ================= 🌐 GENERAL ================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #eef2f3, #f5f4f2);
+  color: #2c2c2c;
+}
+
+/* ================= FORM CONTAINER ================= */
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;        
+  overflow: hidden;     
+}
+
+/* ================= HERO ================= */
+.hero {
+  position: relative;
+  background: linear-gradient(160deg, #1a2e1c 0%, #2d4f30 50%, #3d6b42 100%);
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.hero-stats {
+  display: flex;
+  gap: 50px;
+  margin-top: 25px;
+}
+
+.stat {
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.stat small {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 60px rgba(255,255,255,0.03),
+    0 0 0 120px rgba(255,255,255,0.02);
+}
+
+/* ================= BADGE ================= */
+.hero-badge {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+}
+
+/* ================= LANGUAGE ================= */
+.lang-bar {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.lang-bar button {
+  padding: 6px 12px;
+  margin-left: 6px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lang-bar button:hover {
+  background: rgba(255,255,255,0.3);
+}
+.reminder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.reminder-card {
+  background: #f5f7f6;
+  padding: 15px;
+  border-radius: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.reminder-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.reminder-icon {
+  font-size: 30px;
+}
+.lang-bar .active {
+  background: #66bb6a;
+}
+.health-card {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 800px;
+  margin-bottom: 20px;
+  margin: 20px auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}       
+
+.health-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.health-card {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+}
+.status-icon {
+  font-size: 32px;
+  background: #4caf50;
+  color: white;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.health-status h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #2e7d32;
+}
+
+.health-status p {
+  margin: 3px 0 0;
+  font-size: 14px;
+  color: #555;
+}
+/* ================= HERO TEXT ================= */
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;      
+  margin: 0;
+  letter-spacing: -1px;
+  white-space: nowrap;  
+}
+.hero-content em {
+  color: #a5d6a7;
+}
+
+.hero-sub {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* ================= FORM ================= */
+/* ================= FORM ================= */
+.form-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  border-radius: 20px;
+  padding: 12px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+/* 👇 ADD HERE */
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+.form-group {
+  margin-bottom: 6px;  
+}
+/* ================= INPUT ================= */
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #66bb6a;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102,187,106,0.2);
+}
+
+/* ================= BUTTON ================= */
+#predictBtn, #backBtn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #2e7d32, #66bb6a);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#predictBtn:hover, #backBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(46,125,50,0.3);
+}
+
+/* ================= DASHBOARD ================= */
+.dashboard {
+  padding: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ================= BOX ================= */
+.box {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: 0.3s;
+}
+
+.box:hover {
+  transform: translateY(-3px);
+}
+/* ================= 🔥 CALORIE CARD (UPDATED) ================= */
+.card {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-left: 6px solid #2e7d32;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: 0.3s;
+}
+#calorieChart {
+  max-height: 250px;
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* Title */
+.card h3 {
+  margin-top: 0;
+  color: #1b5e20;
+  font-size: 18px;
+}
+
+/* Divider */
+.card hr {
+  border: none;
+  border-top: 1px solid #c8e6c9;
+  margin: 12px 0;
+}
+
+/* Text rows */
+.card p {
+  margin: 8px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Highlight numbers */
+.card b {
+  font-size: 22px;
+  color: #1b5e20;
+}
+
+/* Macro values */
+.card span {
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Plate list */
+.card ul {
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+/* Plate items */
+.card ul li {
+  list-style: none;
+  padding: 4px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Add check icon */
+.card ul li::before {
+  content: "✔ ";
+  color: #2e7d32;
+  font-weight: bold;
+}
+/* ================= ⚠ WARNING CARD ================= */
+.warning-card {
+  border-left: 6px solid #e53935;
+  background: #fff5f5;
+}
+
+.warning-card li {
+  background: #ffeaea;
+}
+
+/* ================= BMI ================= */
+.top-section {
+  text-align: center;
+}
+
+#message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.bmi-gauge {
+  height: 14px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #2196f3, #4caf50, #ff9800, #f44336);
+  position: relative;
+  margin-top: 10px;
+}
+
+/* BMI numbers */
+.bmi-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #555;
+}
+
+#bmiPointer {
+  position: absolute;
+  width: 14px;
+  height: 28px;
+  background: #000;
+  top: -8px;
+  border-radius: 4px;
+}
+
+/* ================= 💧 WATER SCHEDULE ================= */
+#waterPlan li {
+  background: #e3f2fd;
+  font-weight: 500;
+}
+
+/* ================= 🥗 NUTRITION BARS ================= */
+.nutrition-bar {
+  height: 12px;
+  border-radius: 10px;
+  background: #eee;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.nutrition-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #66bb6a, #2e7d32);
+}
+
+/* ================= GRID ================= */
+.main-grid, .bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 20px;
+}
+
+/* ================= LIST ================= */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: #f7f7f7;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 6px 0;
+  transition: 0.2s;
+}
+
+ul li:hover {
+  background: #e8f5e9;
+}
+/* ================= TABLE ================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th {
+  background: linear-gradient(135deg, #2e7d32, #66bb6a);
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #eee;
+}
+/* ================= 🍽️ MEAL TABLE IMPROVED ================= */
+table td {
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+table tr:hover {
+  background: #f1f8e9;
+}
+
+table td strong {
+  color: #2e7d32;
+}
+/* ================= 💡 MEAL NOTE ================= */
+#mealNote {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+}
+/* ================= 🔔 POPUP REMINDER ================= */
+.reminder-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #2e7d32;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ================= CHAT ================= */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #2e7d32, #66bb6a);
+  color: white;
+  padding: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.chatbox {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.chat-header {
+  background: #2e7d32;
+  color: white;
+  padding: 14px;
+}
+
+.chat-body {
+  height: 220px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.chat-input {
+  display: flex;
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  padding: 12px;
+}
+
+.chat-input button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 12px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .form-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 300px;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+/* ================= 🧬 PCOS SAFE MESSAGE ================= */
+.pcos-safe-msg{
+  margin-top: 12px;
+  padding: 14px;
+  background: #e8f5e9;
+  border-left: 5px solid #4caf50;
+  border-radius: 10px;
+  color: #1b5e20;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(76,175,80,0.08);
+}
+
+/* 🔴 Warning Card */
+.pcos-warning {
+  margin-top: 12px;
+  padding: 12px;
+  background: #ffeaea;
+  border-left: 5px solid #e53935;
+  border-radius: 10px;
+  color: #b71c1c;
+  font-weight: 500;
+}
+/* ⚠ Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+/* ================= 🧬 PCOS CARD ================= */
+.pcos-card {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.pcos-card.high {
+  background: #ffeaea;
+  border-left: 5px solid #e53935;
+  color: #b71c1c;
+  font-weight: bold;
+}
+
+.pcos-card.low {
+  background: #e8f5e9;
+  border-left: 5px solid #4caf50;
+  color: #1b5e20;
+  font-weight: 500;
+}
+
+/* ⚠ Shake animation */
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+/* ================= CHAT MESSAGES ================= */
+.chat-msg {
+  margin: 6px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  max-width: 75%;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.chat-msg.user {
+  background: #2e7d32;
+  color: white;
+  margin-left: auto;
+}
+
+.chat-msg.bot {
+  background: #f1f1f1;
+  color: #333;
+}
+.chat-msg{
+  padding:10px;
+  margin:8px;
+  border-radius:10px;
+  }
+  
+  .chat-msg.user{
+  background:#d1ffd1;
+  text-align:right;
+  }
+  
+  .chat-msg.bot{
+  background:#f1f1f1;
+  }
+/* ================= 👩 WOMEN HEALTH SECTION ================= */
+
+.success-card{
+  background:#e8f5e9;
+  border-left:5px solid #4caf50;
+}
+
+.warning-card{
+  background:#fff8e1;
+  border-left:5px solid #ff9800;
+}
+
+#womenRiskBox{
+  margin-top:15px;
+}
+
+#womenAlert p,
+#womenRiskBox p{
+  margin:8px 0;
+  line-height:1.5;
+}
+
+#womenRiskBox ul{
+  padding:0;
+  margin-top:10px;
+}
+
+#womenRiskBox li{
+  background:#fff3e0;
+  margin:6px 0;
+  padding:10px;
+  border-radius:10px;
+}  
