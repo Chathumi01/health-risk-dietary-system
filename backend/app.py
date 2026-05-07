@@ -1,7 +1,7 @@
 import os
 import joblib
 import pandas as pd
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from translator import deep_translate
 
@@ -26,12 +26,20 @@ FRONTEND_FOLDER = os.path.join(BASE_DIR, "frontend")
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
 
 # ================= FLASK APP =================
+
+
 app = Flask(
     __name__,
     static_folder=FRONTEND_FOLDER,
-    static_url_path=""
+    template_folder=FRONTEND_FOLDER
 )
+@app.route("/")
+def home():
+    return send_from_directory(FRONTEND_FOLDER, "index.html")
 
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory(FRONTEND_FOLDER, path)
 CORS(app)
 
 # ================= FRONTEND ROUTES =================
