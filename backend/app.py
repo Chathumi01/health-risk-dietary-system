@@ -44,9 +44,6 @@ CORS(app)
 
 # ================= FRONTEND ROUTES =================
 @app.route("/")
-def home():
-    return app.send_static_file("index.html")
-
 @app.route("/<path:path>")
 def frontend_files(path):
     return app.send_static_file(path)
@@ -786,7 +783,6 @@ def predict():
         print("ERROR:", str(e))
         return jsonify({"error": "Server crash"}), 500
 
-app = Flask(__name__)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5001)
