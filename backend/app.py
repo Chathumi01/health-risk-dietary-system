@@ -35,7 +35,13 @@ app = Flask(
 CORS(app)
 
 #  FRONTEND ROUTES 
+# FRONTEND ROUTES
+
 @app.route("/")
+def home():
+    return app.send_static_file("index.html")
+
+
 @app.route("/<path:path>")
 def frontend_files(path):
     return app.send_static_file(path)
