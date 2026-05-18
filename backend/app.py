@@ -20,7 +20,7 @@ from dietary_rules import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
-FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
+FRONTEND_FOLDER = os.path.join(BASE_DIR, "frontend")
 
 # if app.py is inside backend folder use this instead:
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
@@ -35,12 +35,9 @@ app = Flask(
 CORS(app)
 
 #  FRONTEND ROUTES 
-# FRONTEND ROUTES
-
 @app.route("/")
 def home():
     return app.send_static_file("index.html")
-
 
 @app.route("/<path:path>")
 def frontend_files(path):
@@ -691,7 +688,7 @@ def predict():
         pregnant_value = str(data.get("pregnant")).strip().lower()
         pregnant = pregnant_value in ["yes", "true", "1"]
 
-        gender = safe_int(data.get("gender"))
+        
         activity = safe_int(data.get("activity"))
         addiction = safe_int(data.get("tobacco_alcohol"))
         diet_type = safe_int(data.get("diet_type"))
@@ -706,7 +703,12 @@ def predict():
 
         nutrition = get_nutrition(risk, gender, age, pregnant, lang) or {}
 
-        macros = nutrition["macros"]
+        macros = nutrition.get("macros", {
+            "Protein (g)": 0,
+            "Carbs (g)": 0,
+            "Fat (g)": 0,
+            "Fiber (g)": 25
+        })
 
         #  PLANS 
         meal_plan = get_smart_meal_plan(
