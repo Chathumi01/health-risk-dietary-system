@@ -1,4 +1,4 @@
-// ================= GLOBAL =================
+//  GLOBAL 
 let currentLang = "en";
 let reminderInterval = null;
 
@@ -14,7 +14,7 @@ function getReminderIcon(text){
     return "💡";
 }
 
-// ================= CHAT TOGGLE =================
+//  CHAT TOGGLE 
 window.toggleChat = function(){
 
     const chat = document.getElementById("chatbox");
@@ -42,12 +42,12 @@ window.toggleChat = function(){
         }
     }
 }
-// ================= SAFE DOM =================
+//  SAFE DOM 
 function get(id){
     return document.getElementById(id);
 }
 
-// ================= POPUP =================
+//  POPUP 
 function showPopup(msg){
 
     // Sinhala mode = bilingual
@@ -80,7 +80,7 @@ function showPopup(msg){
 
     setTimeout(() => {
         div.remove();
-    }, 5000);
+    }, 5001);
 }
 
 // 👇 ADD HERE (RIGHT AFTER showPopup)
@@ -101,7 +101,7 @@ function startReminderPopups(reminders){
         showPopup(reminders[index]);
     }, 12000);
 }
-// ================= LANGUAGE =================
+// LANGUAGE 
 const TEXT = {
     en: {
       button: "Predict Health",
@@ -126,13 +126,13 @@ const TEXT = {
       water: "ලීටර් / දින"
     }
   };
-// ================= LANGUAGE SET =================
-// ================= LANGUAGE SET =================
+
+//  LANGUAGE SET 
 function setLang(lang){
     currentLang = lang;
     localStorage.setItem("lang", lang);
 
-    // ===== BUTTON ACTIVE STYLE =====
+    //  BUTTON ACTIVE STYLE 
     get("enBtn").classList.remove("active");
     get("siBtn").classList.remove("active");
 
@@ -142,7 +142,7 @@ function setLang(lang){
         get("siBtn").classList.add("active");
     }
 
-    // ===== LEFT SIDE =====
+    //  LEFT SIDE 
     get("heroBadge").innerText =
         lang==="si" ? "🌿 AI සෞඛ්‍ය අනාවැකි පද්ධතිය" :
                       "🌿 AI HEALTH PREDICTION SYSTEM";
@@ -164,7 +164,7 @@ function setLang(lang){
     get("stat3").innerText =
         lang==="si" ? "පුද්ගලික" : "Personalized";
 
-    // ===== RIGHT SIDE =====
+    // RIGHT SIDE 
     document.querySelector(".form-card h2").innerText =
         lang==="si" ? "සෞඛ්‍ය අවදානම් පුරෝකථකය" :
                       "Health Risk Predictor";
@@ -172,7 +172,28 @@ function setLang(lang){
     document.querySelector(".subtitle").innerText =
         lang==="si" ? "ඔබගේ තොරතුරු ඇතුලත් කරන්න" :
                       "Enter your details";
-
+                      get("predictBtn").innerText =
+                      lang==="si" ? "✦ සෞඛ්‍යය පුරෝකථනය කරන්න" :
+                                    "✦ Predict Health";
+                  
+                  // BMI LABELS
+                  if(get("bmiLabels")){
+                  
+                      get("bmiLabels").innerHTML =
+                      lang === "si"
+                      ? `
+                        <span>අඩු බර</span>
+                        <span>සාමාන්‍ය</span>
+                        <span>වැඩි බර</span>
+                        <span>අධික බර</span>
+                      `
+                      : `
+                        <span>Underweight</span>
+                        <span>Normal</span>
+                        <span>Overweight</span>
+                        <span>Obese</span>
+                      `;
+                  }
     get("ageLabel").innerText =
         lang==="si" ? "වයස" : "Age";
 
@@ -201,7 +222,7 @@ function setLang(lang){
         lang==="si" ? "✦ සෞඛ්‍යය පුරෝකථනය කරන්න" :
                       "✦ Predict Health";
                       
-    // ===== RESULT PAGE TITLES =====
+    //  RESULT PAGE TITLES 
 get("conditionTitle").innerText =
 lang==="si"
 ? "⚠️ ජීවන රටා අවදානම් සාධක"
@@ -242,7 +263,7 @@ lang==="si"
 ? "🥗 පෝෂණ විස්තරය"
 : "🥗 Nutrition Breakdown";
 
-    // ===== DROPDOWNS =====
+    //  DROPDOWNS 
     get("gender").options[0].text = lang==="si" ? "තෝරන්න" : "Select";
     get("gender").options[1].text = lang==="si" ? "පුරුෂ" : "Male";
     get("gender").options[2].text = lang==="si" ? "ස්ත්‍රී" : "Female";
@@ -264,30 +285,13 @@ lang==="si"
     get("pregnant").options[1].text = lang==="si" ? "ඔව්" : "Yes";
 }
 
-if(get("bmiLabels")){
-
-    get("bmiLabels").innerHTML =
-    currentLang === "si"
-    ? `
-      <span>අඩු බර</span>
-      <span>සාමාන්‍ය</span>
-      <span>වැඩි බර</span>
-      <span>අධික බර</span>
-    `
-    : `
-      <span>Underweight</span>
-      <span>Normal</span>
-      <span>Overweight</span>
-      <span>Obese</span>
-    `;
-}
-// ================= 🆕 STATUS COLOR =================
+//  STATUS COLOR 
 function colorStatus(status){
     if(status === "Good") return "🟢";
     if(status === "Moderate") return "🟠";
     return "🔴";
 }
-// ================= 🆕 HOUSEHOLD CONVERSION =================
+//  HOUSEHOLD CONVERSION 
 function convertMealText(mealText){
     if(!mealText) return "-";
 
@@ -456,7 +460,7 @@ function getReminderSubtext(text){
 }
 
 
-/* 👇 PASTE HERE (replace old translateReminder) */
+
 function translateReminder(text){
 
     const map = {
@@ -492,7 +496,7 @@ function renderReminders(arr){
     `).join("");
 }
 
-// ================= MAIN =================
+//  MAIN 
 async function predict(){
 
     const t = TEXT[currentLang] || TEXT["en"];
@@ -551,7 +555,7 @@ const data = {
         get("formPage").classList.add("hidden");
         get("resultPage").classList.remove("hidden");
 
-        // ===== BASIC =====
+        //  BASIC 
         get("bmi").innerText = d.bmi ?? "-";
         get("bmiValue").innerText = d.bmi ?? "-";
         let messageText = "";
@@ -655,7 +659,7 @@ const data = {
     }
 }
 
-// ================= BMI =================
+//  BMI 
 function renderBMIRiskDetails(bmi){
 
     const box = get("bmiRisks");
@@ -739,7 +743,7 @@ function renderBMIRiskDetails(bmi){
     
     box.innerHTML = html;
     }
-// ================= BMI GAUGE =================
+//  BMI GAUGE
 function setBMIGauge(val){
 
     if(!val) return;
@@ -758,7 +762,7 @@ function setBMIGauge(val){
         pointer.style.left = percent + "%";
     }
 }
-// ================= RISK =================
+//  RISK 
 function setRiskUI(risk){
     const t = TEXT[currentLang];
     if(get("risk")){
@@ -769,7 +773,7 @@ function setRiskUI(risk){
     }
 }
 
-// ================= WATER =================
+//  WATER 
 function renderWater(w){
     if(!w || !w.schedule) return;
 
@@ -787,7 +791,7 @@ function renderWater(w){
     }
 }
 
-// ================= FOOD TIPS =================
+//  FOOD TIPS 
 
 function renderFoodRecommendations(arr){
     if(!arr) return;
@@ -818,7 +822,7 @@ function translateFood(text){
     .replace(/Kurakkan roti/gi,"කුරක්කන් රොටි")
     .replace(/Coconut Rotti/gi,"පොල් රොටි");
     }
-// ================= MEAL TABLE =================
+//  MEAL TABLE 
 function renderMealTable(plan, lang){
 
     const si = lang === "si";
@@ -849,7 +853,7 @@ function renderMealTable(plan, lang){
 
     document.getElementById("mealTable").innerHTML = html;
 }
-// ================= CALORIE CARD =================
+//  CALORIE CARD 
 function renderCalorieCard(data){
 
     if(!data) return;
@@ -966,7 +970,7 @@ function translateWorkout(workout){
         .replace(/Rest/gi,"විවේකය")
         .replace(/Workout/gi,"ව්‍යායාම");
 }
-// ================= EXERCISE =================
+//  EXERCISE 
 function renderExerciseTable(plan){
 
     const table = document.getElementById("exerciseTable");
@@ -1005,7 +1009,7 @@ function renderCalorieBalance(c){
     ⚖️ ${currentLang==="si" ? "ශුද්ධ ප්‍රමාණය" : "Net"}: <b>${c.net} kcal</b>
     `;
 }
-//========cancer===========
+//cancer
 function renderWomenHealthAlert(user){
 
     const box = document.getElementById("womenAlert");
@@ -1017,7 +1021,7 @@ function renderWomenHealthAlert(user){
 
     const si = currentLang === "si";
 
-    // ================= NOT FEMALE =================
+    //  NOT FEMALE 
     if(gender !== "1"){
         box.innerHTML = `
         <div class="card">
@@ -1028,7 +1032,7 @@ function renderWomenHealthAlert(user){
 
     let html = "";
 
-    // ================= FEMALE NOT PREGNANT =================
+    //  FEMALE NOT PREGNANT 
     if(pregnant === "0"){
 
         if(age >= 45){
@@ -1063,7 +1067,7 @@ function renderWomenHealthAlert(user){
         }
     }
 
-    // ================= FEMALE PREGNANT =================
+    //  FEMALE PREGNANT 
     else if(pregnant === "1"){
 
         html += `
@@ -1150,7 +1154,7 @@ function renderWomenHealthAlert(user){
 
     box.innerHTML = html;
 }
-// ================= CALORIE BALANCE =================
+//  CALORIE BALANCE 
 
 function renderPCOS(p, user){
 
@@ -1180,7 +1184,7 @@ function renderPCOS(p, user){
     // ✅ DEFINE HIGH BMI (YOU CAN ADJUST)
     const isHighBMI = bmi >= 25;   // overweight + obese
 
-    // ================= LOW RISK =================
+    //  LOW RISK 
     if(!isHighBMI){
 
         box.innerHTML = `
@@ -1199,7 +1203,7 @@ function renderPCOS(p, user){
         return;
     }
 
-    // ================= HIGH RISK =================
+    // HIGH RISK 
     const symptoms = currentLang==="si" ? `
 <ul class="pcos-list">
     <li>අවිධිමත් මාසික</li>
@@ -1246,7 +1250,7 @@ const advice = `
         if(el) el.classList.add("shake");
     }, 100);
 }
-// ================= LIST =================
+//  LIST 
 function fillList(id, arr){
 
     const el = get(id);
@@ -1300,7 +1304,7 @@ function goBack(){
 
     window.scrollTo({top:0, behavior:"smooth"});
 }
-// ================= INIT =================
+//  INIT 
 document.addEventListener("DOMContentLoaded", () => {
 
     // Default language
@@ -1312,7 +1316,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const preg = get("pregnant");
     const chatInput = get("chatInput");
 
-    // ===== SHOW / HIDE PREGNANT =====
+    // SHOW / HIDE PREGNANT 
     function togglePregnancy() {
 
         if (!gender || !pregRow || !preg) return;
@@ -1351,7 +1355,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
-// ================= CHATBOT =================
+// CHATBOT 
 function sendMessage(){
 
     const input = get("chatInput");

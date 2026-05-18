@@ -1,4 +1,4 @@
-/* ================= 🌐 GENERAL ================= */
+/*  GENERAL  */
 * {
   box-sizing: border-box;
 }
@@ -10,7 +10,7 @@ body {
   color: #2c2c2c;
 }
 
-/* ================= FORM CONTAINER ================= */
+/*  FORM CONTAINER */
 .form-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -18,7 +18,7 @@ body {
   overflow: hidden;     
 }
 
-/* ================= HERO ================= */
+/*  HERO  */
 .hero {
   position: relative;
   background: linear-gradient(160deg, #1a2e1c 0%, #2d4f30 50%, #3d6b42 100%);
@@ -63,7 +63,7 @@ body {
     0 0 0 120px rgba(255,255,255,0.02);
 }
 
-/* ================= BADGE ================= */
+/* BADGE  */
 .hero-badge {
   position: absolute;
   top: 30px;
@@ -74,7 +74,7 @@ body {
   background: rgba(255,255,255,0.15);
 }
 
-/* ================= LANGUAGE ================= */
+/* LANGUAGE */
 .lang-bar {
   position: absolute;
   top: 30px;
@@ -168,7 +168,7 @@ body {
   font-size: 14px;
   color: #555;
 }
-/* ================= HERO TEXT ================= */
+/*  HERO TEXT  */
 .hero-content h1 {
   font-family: 'Playfair Display', serif;
   font-size: 56px;      
@@ -186,8 +186,7 @@ body {
   margin-top: 10px;
 }
 
-/* ================= FORM ================= */
-/* ================= FORM ================= */
+/* FORM  */
 .form-box {
   display: flex;
   justify-content: center;
@@ -222,7 +221,7 @@ body {
 .form-group {
   margin-bottom: 6px;  
 }
-/* ================= INPUT ================= */
+/*  INPUT  */
 input, select {
   width: 100%;
   padding: 10px 12px;
@@ -239,7 +238,7 @@ input:focus, select:focus {
   box-shadow: 0 0 0 3px rgba(102,187,106,0.2);
 }
 
-/* ================= BUTTON ================= */
+/*  BUTTON  */
 #predictBtn, #backBtn {
   width: 100%;
   margin-top: 20px;
@@ -258,7 +257,7 @@ input:focus, select:focus {
   box-shadow: 0 12px 25px rgba(46,125,50,0.3);
 }
 
-/* ================= DASHBOARD ================= */
+/*  DASHBOARD */
 .dashboard {
   padding: 30px;
 }
@@ -267,7 +266,7 @@ input:focus, select:focus {
   display: none;
 }
 
-/* ================= BOX ================= */
+/* BOX  */
 .box {
   background: white;
   border-radius: 18px;
@@ -280,7 +279,7 @@ input:focus, select:focus {
 .box:hover {
   transform: translateY(-3px);
 }
-/* ================= 🔥 CALORIE CARD (UPDATED) ================= */
+/*  CALORIE CARD (UPDATED)  */
 .card {
   background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
   border-left: 6px solid #2e7d32;
@@ -352,7 +351,7 @@ input:focus, select:focus {
   color: #2e7d32;
   font-weight: bold;
 }
-/* ================= ⚠ WARNING CARD ================= */
+/*  WARNING CARD */
 .warning-card {
   border-left: 6px solid #e53935;
   background: #fff5f5;
@@ -362,7 +361,7 @@ input:focus, select:focus {
   background: #ffeaea;
 }
 
-/* ================= BMI ================= */
+/*  BMI */
 .top-section {
   text-align: center;
 }
@@ -399,13 +398,13 @@ input:focus, select:focus {
   border-radius: 4px;
 }
 
-/* ================= 💧 WATER SCHEDULE ================= */
+/*  WATER SCHEDULE */
 #waterPlan li {
   background: #e3f2fd;
   font-weight: 500;
 }
 
-/* ================= 🥗 NUTRITION BARS ================= */
+/*  NUTRITION BARS */
 .nutrition-bar {
   height: 12px;
   border-radius: 10px;
@@ -419,14 +418,14 @@ input:focus, select:focus {
   background: linear-gradient(135deg, #66bb6a, #2e7d32);
 }
 
-/* ================= GRID ================= */
+/*  GRID */
 .main-grid, .bottom-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
   gap: 20px;
 }
 
-/* ================= LIST ================= */
+/*  LIST  */
 ul {
   list-style: none;
   padding: 0;
@@ -443,7 +442,7 @@ ul li {
 ul li:hover {
   background: #e8f5e9;
 }
-/* ================= TABLE ================= */
+/*  TABLE */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -462,7 +461,7 @@ td {
   padding: 10px;
   border: 1px solid #eee;
 }
-/* ================= 🍽️ MEAL TABLE IMPROVED ================= */
+/* MEAL TABLE IMPROVED  */
 table td {
   vertical-align: top;
   font-size: 14px;
@@ -476,13 +475,13 @@ table tr:hover {
 table td strong {
   color: #2e7d32;
 }
-/* ================= 💡 MEAL NOTE ================= */
+/*  MEAL NOTE  */
 #mealNote {
   font-size: 14px;
   margin-bottom: 10px;
   color: #555;
 }
-/* ================= 🔔 POPUP REMINDER ================= */
+/*  POPUP REMINDER  */
 .reminder-popup {
   position: fixed;
   bottom: 20px;
@@ -500,7 +499,7 @@ table td strong {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* ================= CHAT ================= */
+/*  CHAT  */
 .chat-toggle {
   position: fixed;
   bottom: 20px;
@@ -552,7 +551,7 @@ table td strong {
   padding: 12px;
 }
 
-/* ================= RESPONSIVE ================= */
+/*  RESPONSIVE  */
 @media(max-width:768px){
   .form-container {
     grid-template-columns: 1fr;
@@ -570,7 +569,7 @@ table td strong {
     flex-direction: column;
   }
 }
-/* ================= 🧬 PCOS SAFE MESSAGE ================= */
+/* PCOS SAFE MESSAGE  */
 .pcos-safe-msg{
   margin-top: 12px;
   padding: 14px;
@@ -604,7 +603,7 @@ table td strong {
 .shake {
   animation: shake 0.5s ease-in-out;
 }
-/* ================= 🧬 PCOS CARD ================= */
+/* PCOS CARD  */
 .pcos-card {
   padding: 10px;
   border-radius: 10px;
@@ -629,7 +628,7 @@ table td strong {
 .shake {
   animation: shake 0.5s ease-in-out;
 }
-/* ================= CHAT MESSAGES ================= */
+/*  CHAT MESSAGES */
 .chat-msg {
   margin: 6px 0;
   padding: 10px 12px;
@@ -663,7 +662,7 @@ table td strong {
   .chat-msg.bot{
   background:#f1f1f1;
   }
-/* ================= 👩 WOMEN HEALTH SECTION ================= */
+/*  WOMEN HEALTH SECTION  */
 
 .success-card{
   background:#e8f5e9;
