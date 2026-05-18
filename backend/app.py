@@ -4,6 +4,7 @@ import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from translator import deep_translate
+from pymongo import MongoClient
 
 from dietary_rules import (
     get_conditions,
@@ -34,6 +35,9 @@ app = Flask(
 
 CORS(app)
 
+client = MongoClient("mongodb://localhost:27017/")
+db = client["health_risk_db"]
+collection = db["predictions"]
 #  FRONTEND ROUTES 
 @app.route("/")
 def home():
@@ -694,8 +698,22 @@ def predict():
         diet_type = safe_int(data.get("diet_type"))
 
         #  BMI 
+        # BMI
         bmi = round(weight / ((height / 100) ** 2), 2)
         risk = 2 if bmi >= 30 else 1 if bmi >= 25 else 0
+
+        # SAVE TO MONGODB
+        collection.insert_one({
+            "age": age,
+            "gender": gender,
+            "height": height,
+            "weight": weight,
+            "bmi": bmi,
+            "risk": risk,
+            "diet_type": diet_type,
+            "activity": activity,
+            "pregnant": pregnant
+        })
 
         # CALORIES 
         cal_data = calculate_calories(age, gender, height, weight, activity, pregnant)
