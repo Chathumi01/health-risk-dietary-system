@@ -1,16 +1,16 @@
-# ================= 🌐 LANGUAGE =================
+#  LANGUAGE 
 def t(en, si, lang="en"):
     return si if lang == "si" else en
 
 
-# ================= ⚠ CONDITIONS =================
+#  ⚠ CONDITIONS 
 def get_conditions(bmi, activity, addiction, gender, age, pregnant, lang):
 
     conditions = []
 
-    # ==================================================
+  
     # 👶 BABIES (0-2)
-    # ==================================================
+    
     if age <= 2:
 
         conditions.append("Rapid growth stage → nutrition is very important")
@@ -23,9 +23,9 @@ def get_conditions(bmi, activity, addiction, gender, age, pregnant, lang):
 
         return conditions
 
-    # ==================================================
+    
     # 👦 CHILDREN (3-12)
-    # ==================================================
+    
     elif age <= 12:
 
         conditions.append("Growth stage → needs balanced nutrition")
@@ -38,9 +38,9 @@ def get_conditions(bmi, activity, addiction, gender, age, pregnant, lang):
 
         return conditions
 
-    # ==================================================
+    
     # 🤰 PREGNANT WOMEN
-    # ==================================================
+    
     elif pregnant:
 
         conditions.append("Pregnancy needs extra iron & folic acid")
@@ -52,9 +52,9 @@ def get_conditions(bmi, activity, addiction, gender, age, pregnant, lang):
 
         return conditions
 
-    # ==================================================
+    
     # 👨 ADULTS
-    # ==================================================
+   
     if activity == 0:
         conditions.append("Sedentary lifestyle → increases obesity risk")
 
@@ -79,10 +79,10 @@ def get_conditions(bmi, activity, addiction, gender, age, pregnant, lang):
         conditions.append("Poor nutrition may affect thyroid health")
 
     return conditions
-# ================= 🍎 FOODS =================
+#  🍎 FOODS 
 def get_foods(risk, lang, age=25):
 
-    # ================= BABIES 0-2 =================
+    # BABIES 0-2 
     if age <= 2:
         return [
             "Breast milk / Formula",
@@ -93,7 +93,7 @@ def get_foods(risk, lang, age=25):
             "Mashed papaya"
         ]
 
-    # ================= CHILDREN 3-5 =================
+    # CHILDREN 3-5 
     elif age <= 5:
         return [
             "Milk",
@@ -104,7 +104,7 @@ def get_foods(risk, lang, age=25):
             "Yogurt"
         ]
 
-    # ================= CHILDREN 6-12 =================
+    #  CHILDREN 6-12
     elif age <= 12:
         return [
             "Milk / Curd",
@@ -115,7 +115,7 @@ def get_foods(risk, lang, age=25):
             "Peanut butter bread"
         ]
 
-    # ================= ADULT =================
+    #  ADULT 
     if risk == 2:
         return [
             "Leafy greens",
@@ -132,7 +132,7 @@ def get_foods(risk, lang, age=25):
         "Protein foods"
     ]
 
-# ================= 🚫 AVOID =================
+#  🚫 AVOID 
 def get_avoid(risk, lang, age=25):
 
     # babies
@@ -176,9 +176,7 @@ def get_avoid(risk, lang, age=25):
          "Chocolate cake"
         ]
     
-
-# ================= 🥗 NUTRITION (FIXED FOR FRONTEND) =================
-# ================= 🥗 SMART NUTRITION =================
+#  🥗 SMART NUTRITION 
 def get_nutrition(risk, gender, age, pregnant, lang):
 
     # 🤰 FIRST PRIORITY
@@ -208,16 +206,16 @@ def get_nutrition(risk, gender, age, pregnant, lang):
         else:
             calories = 2200
             carbs, protein, fat = 50, 25, 25
-    # ==========================================
+    
     # Convert to grams
-    # ==========================================
+    
     carbs_g = int((carbs / 100) * calories / 4)
     protein_g = int((protein / 100) * calories / 4)
     fat_g = int((fat / 100) * calories / 9)
 
-    # ==========================================
+    
     # Default minerals
-    # ==========================================
+    
     fiber = 25
     calcium = 1000
     iron = 18
@@ -288,14 +286,14 @@ def get_nutrition(risk, gender, age, pregnant, lang):
             "Zinc": ["Fish"]
         }
     }
-# ================= ⚠ WARNINGS =================
+#  ⚠ WARNINGS 
 def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
 
     warnings = []
 
-    # =================================================
+
     # 👶 BABIES (0-2)
-    # =================================================
+    
     if age <= 2:
         warnings.append("🍼 Breast milk / formula is the main nutrition source")
         warnings.append("⚠ Avoid honey below age 1")
@@ -308,10 +306,9 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
 
         return warnings
 
-    # =================================================
+    
     # 👦 CHILDREN (3-12)
-    # =================================================
-    elif age <= 12:
+    
         warnings.append("🍬 Too much sugar may cause tooth decay")
         warnings.append("📱 Too much screen time reduces activity")
         warnings.append("🥗 Growth needs balanced nutrition")
@@ -327,9 +324,8 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
 
         return warnings
 
-    # =================================================
     # 🧑 TEENS (13-18)
-    # =================================================
+    
     elif age <= 18:
         warnings.append("🍔 Junk food may cause unhealthy weight gain")
         warnings.append("😴 Poor sleep affects learning and hormones")
@@ -342,9 +338,9 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
 
         return warnings
 
-    # =================================================
+
     # 🚬 ADDICTION
-    # =================================================
+    
     if addiction in [1, 2, 3]:
         warnings.append("🚬 Smoking / Alcohol increases cancer & organ damage risk")
 
@@ -357,9 +353,8 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
     if addiction == 3:
         warnings.append("⚠ Combined smoking + alcohol = very high health risk")
 
-    # =================================================
     # 🤰 PREGNANCY
-    # =================================================
+    
     if pregnant:
         warnings.append("🤰 Avoid alcohol & smoking completely")
         warnings.append("🥩 Increase protein for baby growth")
@@ -375,9 +370,9 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
         if bmi < 18.5:
             warnings.append("⚠ Low BMI may need extra nutrition during pregnancy")
 
-    # =================================================
+    
     # 🏃 ACTIVITY
-    # =================================================
+   
     if activity == 0:
         warnings.append("⚠ Low activity increases obesity & heart risk")
         warnings.append("💡 Daily walking improves circulation")
@@ -388,9 +383,9 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
     elif activity == 2:
         warnings.append("💧 High activity needs more hydration and recovery")
 
-    # =================================================
+    
     # ❤️ BMI / RISK
-    # =================================================
+
     if bmi >= 30:
         warnings.append("⚠ Obesity increases heart disease & diabetes risk")
 
@@ -400,9 +395,9 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
     if bmi < 18.5:
         warnings.append("⚠ Underweight may cause nutrient deficiency")
 
-    # =================================================
+    
     # 🔴 RISK SCORE
-    # =================================================
+    
     if risk == 2:
         warnings.append("🚨 High risk detected — lifestyle changes needed now")
 
@@ -413,7 +408,7 @@ def get_warnings(pregnant, addiction, risk, activity, bmi, lang, age=25):
         warnings.append("✅ Maintain healthy lifestyle habits")
 
     return warnings
-# ================= 💊 SUPPLEMENTS =================
+#  💊 SUPPLEMENTS 
 def get_supplements(bmi, gender, age, pregnant, lang):
 
     # 👶 BABIES
@@ -471,7 +466,7 @@ def get_supplements(bmi, gender, age, pregnant, lang):
         "Omega 3"
     ]
     
-# ================= 🔔 REMINDERS =================
+#  🔔 REMINDERS
 def get_reminders(risk, activity, lang, pregnant=False, age=25):
 
     # 👶 Babies

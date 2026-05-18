@@ -1,6 +1,6 @@
 SI_MAP = {
 
-# ===== GENERAL =====
+#  GENERAL 
 "Day":"දිනය",
 "Breakfast":"උදෑසන ආහාරය",
 "Lunch":"දිවා ආහාරය",
@@ -15,7 +15,7 @@ SI_MAP = {
 "Fiber":"තන්තු",
 "Water":"ජලය",
 
-#bmi=====
+#bmi
 "Underweight":"අඩු බර",
 "Normal":"සාමාන්‍ය",
 "Overweight":"වැඩි බර",
@@ -24,7 +24,7 @@ SI_MAP = {
 "BMI Analysis":"BMI විශ්ලේෂණය",
 "BMI":"BMI",
 
-# ===== DAYS =====
+#  DAYS 
 "Monday":"සඳුදා",
 "Tuesday":"අඟහරුවාදා",
 "Wednesday":"බදාදා",
@@ -35,7 +35,7 @@ SI_MAP = {
 
 
 
-# ===== BABY / CHILD / ADULT MEAL WORDS =====
+#  BABY / CHILD / ADULT MEAL WORDS
 "Breast milk / Formula":"මව්කිරි / ෆෝමියුලා කිරි",
 "Breast milk":"මව්කිරි",
 "Formula":"ෆෝමියුලා",
@@ -151,7 +151,7 @@ SI_MAP = {
 
 "Dates":"රටඉඳි",
  
-# ===== SMART MEAL PLAN EXTRA WORDS =====
+#  SMART MEAL PLAN EXTRA WORDS 
 
 "Recommended Foods":"නිර්දේශිත ආහාර",
 "Avoid Foods":"වැළකිය යුතු ආහාර",
@@ -161,14 +161,14 @@ SI_MAP = {
 "Burn":"දහනය කළ",
 "Target":"ඉලක්කය",
 
-# ===== TABLE HEADERS =====
+# TABLE HEADERS 
 "Day":"දිනය",
 "Breakfast":"උදෑසන ආහාරය",
 "Lunch":"දිවා ආහාරය",
 "Snack":"අතුරුපස",
 "Dinner":"රාත්‍රී ආහාරය",
 
-# ===== MISSING FOOD WORDS =====
+#  MISSING FOOD WORDS 
 "fish":"මාළු",
 "pumpkin":"වට්ටක්කා",
 "dhal":"පරිප්පු",
@@ -220,13 +220,13 @@ SI_MAP = {
 
 "Protein foods":"ප්‍රෝටීන් ආහාර",
 "Balanced meals":"සමබර ආහාර", 
-# ===== CRAVINGS =====
+# CRAVINGS 
 "Sweet":"පැනි ර​ස",
 "Salty":"ලුණු රස",
 "Carbs":"කාබෝහයිඩ්‍රේට්",
 "Cold":"සිසිල්",
 
-# ===== HEADERS / LABELS =====
+#  HEADERS / LABELS 
 "Day":"දිනය",
 "Workout":"ව්‍යායාමය",
 "Time":"වේලාව",
@@ -236,7 +236,7 @@ SI_MAP = {
 "Snack":"අතුරුපස",
 "Dinner":"රාත්‍රී ආහාරය",
 
-# ===== SECTION TITLES =====
+#  SECTION TITLES 
 "⚠ Critical Warnings":"⚠ වැදගත් අනතුරු ඇඟවීම්",
 "🔔 Reminders":"🔔 මතක් කිරීම්",
 "💊 Supplements":"💊 අතිරේක පෝෂක",
@@ -245,7 +245,7 @@ SI_MAP = {
 "📊 Daily Calorie Comparison":"📊 දෛනික කැලරි සැසඳීම",
 
 
-# ===== BAD FOODS =====
+#  BAD FOODS
 "Burger":"බර්ගර්",
 "Pizza":"පීසා",
 "French fries":"ෆ්‍රෙන්ච් ෆ්‍රයිස්",
@@ -254,8 +254,7 @@ SI_MAP = {
 "Too much oil":"අධික තෙල්",
 "Too much sugar":"අධික සීනි",
 
-# ===== EXERCISE =====
-# ===== DAYS =====
+# DAYS 
 "Day":"දිනය",
 "Monday":"සඳුදා",
 "Tuesday":"අඟහරුවාදා",
@@ -265,7 +264,7 @@ SI_MAP = {
 "Saturday":"සෙනසුරාදා",
 "Sunday":"ඉරිදා",
 
-# ===== TABLE HEADERS =====
+# TABLE HEADERS 
 "Breakfast":"උදෑසන ආහාරය",
 "Lunch":"දිවා ආහාරය",
 "Snack":"අතුරුපස",
@@ -274,58 +273,58 @@ SI_MAP = {
 "Time":"වේලාව",
 "Calories Burn":"දහනය වූ කැලරි",
 
-# ===== TIME =====
+# TIME 
 "min":"මිනිත්තු",
 
-# ===== CHILD ACTIVITIES =====
+#  CHILD ACTIVITIES 
 "Nature Walk":"ස්වභාවික ඇවිදීම",
 "Bubble Chase":"බුබුළු පසුපස දුවීම",
-"Ball Play":"බෝල ක්‍රීඩා",
+"Ball Play":"බෝල ක්‍රීඩා කිරී​ම",
 "Running":"දුවීම",
 "Playground Climb":"ක්‍රීඩා පිටියේ නැගීම",
 "Water Play":"ජල ක්‍රීඩා",
 "Push Toy Walking":"සෙල්ලම් බඩු තල්ලු කර ඇවිදීම",
 "Family Outdoor Walk":"පවුලේ පිටත ඇවිදීම",
 "Garden Free Play":"වත්තේ නිදහස් ක්‍රීඩා",
-"Playground Time":"ක්‍රීඩා පිටියේ කාලය",
+"Playground Time":"ක්‍රීඩා පිටියේ කාලය ගත කිරී​ම",
 "Outdoor Games":"එළිමහන් ක්‍රීඩා",
-"Family Walk":"පවුලේ ඇවිදීම",
+"Family Walk":"පවුලේ අය ​හා ඇවිදීම",
 "Bubble Play":"බුබුළු ක්‍රීඩා",
-"Playground Fun":"ක්‍රීඩා පිටියේ විනෝදය",
-"Nature Explore":"ස්වභාවය ගවේෂණය",
+"Playground Fun":"ක්‍රීඩා පිටියේ විනෝද වී​ම",
+"Nature Explore":"අවට වටපිටා​ව ගවේෂණය",
 
-# ===== PREGNANCY =====
+#  PREGNANCY 
 "Pregnancy Walk":"ගර්භණී ඇවිදීම",
 "Prenatal Yoga":"ගර්භණී යෝගා",
 "Stretching":"ඇඟ දිගහැරීම",
-"Village Walk":"ගම ඇවිදීම",
+"Village Walk":"ගම තු​ල ඇවිදීම",
 "Breathing Exercise":"හුස්ම ගැනීමේ ව්‍යායාම",
 "Slow Walk":"මන්දගාමී ඇවිදීම",
 
-# ===== OBESE / ADULT =====
+#  OBESE / ADULT 
 "Fast Walking":"වේගවත් ඇවිදීම",
 "Farming Work":"ගොවිතැන් වැඩ",
 "Cycling":"සයිකල් පැදීම",
-"Hill Walking":"කන්ද ඇවිදීම",
+"Hill Walking":"කන්ද​ක ඇවිදීම",
 "Skipping + Walk":"පැනීම සහ ඇවිදීම",
-"Heavy Yard Work":"බර වත්තේ වැඩ",
+"Heavy Yard Work":"වත්තේ බර වැඩ",
 "Light Walk":"සැහැල්ලු ඇවිදීම",
 
-# ===== OVERWEIGHT =====
+#  OVERWEIGHT 
 "Walking":"ඇවිදීම",
 "Yoga":"යෝගා",
 "Rest Walk":"විවේක ඇවිදීම",
 
-# ===== NORMAL =====
+# NORMAL 
 "House Work":"ගෙදර වැඩ",
 "Rest":"විවේකය",
-# ===== WARNINGS =====
+#  WARNINGS
 "Junk food may cause unhealthy weight gain":"කෘත්‍රීම ආහාර නි​සා අහිතකර බර වැඩිවිය හැක",
 "Poor sleep affects learning and hormones":"නින්ද අඩුවීම ඉගෙනීම හා හෝමෝන වලට බලපායි",
 "Low activity reduces fitness":"ව්‍යායාම අඩුවීම ශරීර ශක්තිය අඩු කරයි",
 "Teen obesity needs early action":"යෞවන වි​යේ අධික බරට ඉක්මන් ක්‍රියාමාර්ග අවශ්‍යයි",
 
-# ===== CRAVINGS / REMAINING WORDS =====
+# CRAVINGS / REMAINING WORDS 
 "Sweet 🍫":"මිහිරි 🍫",
 "Salty 🥒":"ලුණු රස 🥒",
 "Carbs 🍞":"කාබෝහයිඩ්‍රේට් 🍞",
@@ -350,7 +349,7 @@ SI_MAP = {
 "Watermelon":"කොමඩු",
 "Cold milk":"සිසිල් කිරි",
 
-# ===== HEALTH =====
+#  HEALTH 
 "Underweight":"අඩු බර",
 "Normal":"සාමාන්‍ය",
 "Overweight":"වැඩි බර",
@@ -358,7 +357,7 @@ SI_MAP = {
 
 
 
-# ===== CONDITIONS =====
+#  CONDITIONS 
 "Rapid growth stage → nutrition is very important":"වේගවත් වර්ධන අවධිය → පෝෂණය ඉතා වැදගත්",
 "Low iron may affect brain development":"අඩු යකඩ මට්ටම මොළයේ වර්ධනයට බලපායි",
 "Low calcium may affect bone growth":"අඩු කැල්සියම් අස්ථි වර්ධනයට බලපායි",
@@ -387,7 +386,7 @@ SI_MAP = {
 "High salt intake → blood pressure risk":"අධික ලුණු → රුධිර පීඩන අවදානම",
 "Poor nutrition may affect thyroid health":"අඩු පෝෂණය තයිරොයිඩ් සෞඛ්‍යයට බලපායි",
 
-# ===== FOODS =====
+#  FOODS 
 "Soft boiled egg yolk":"මෘදු තම්බා බිත්තර කහ මදය",
 "Milk / Curd":"කිරි / මුදවපු කිරි",
 "Fruits":"පළතුරු",
@@ -395,7 +394,7 @@ SI_MAP = {
 "Balanced meals":"සමබර ආහාර වේල්",
 "Protein foods":"ප්‍රෝටීන් ආහාර",
 
-# ===== AVOID =====
+#  AVOID 
 "Honey":"මී පැණි",
 "Hard nuts":"දෘඩ ඇට වර්ග",
 "Popcorn":"පොප්කෝන්",
@@ -409,7 +408,7 @@ SI_MAP = {
 "Instant noodles":"ඉන්ස්ටන්ට් නූඩ්ල්ස්",
 "Chocolate cake":"චොකලට් කේක්",
 
-# ===== NUTRITION LABELS =====
+#  NUTRITION LABELS 
 "Protein":"ප්‍රෝටීන්",
 "Fat":"මේදය",
 "Carbs %":"කාබෝහයිඩ්‍රේට් %",
@@ -424,7 +423,7 @@ SI_MAP = {
 "Calcium (mg)":"කැල්සියම් (මි.ග්‍රෑ)",
 "Iron (mg)":"යකඩ (මි.ග්‍රෑ)",
 
-# ===== VITAMINS / MINERALS =====
+#  VITAMINS / MINERALS 
 "Vitamin A":"විටමින් A",
 "Vitamin C":"විටමින් C",
 "Vitamin D":"විටමින් D",
@@ -438,7 +437,7 @@ SI_MAP = {
 "Lentils":"පරිප්පු",
 "Spinach":"නිවිති",
 
-# ===== WARNINGS =====
+#  WARNINGS 
 "🍼 Breast milk / formula is the main nutrition source":"🍼 මව්කිරි / ෆෝමියුලා ප්‍රධාන පෝෂණ මූලාශ්‍රයයි",
 "⚠ Avoid honey below age 1":"⚠ වයස 1 ට අඩු නම් මී පැණි නොදෙන්න",
 "⚠ Avoid hard foods (nuts, popcorn, candy)":"⚠ දෘඩ ආහාර වලකින්න (ඇට වර්ග, පොප්කෝන්, කැන්ඩි)",
@@ -483,7 +482,7 @@ SI_MAP = {
 "⚠ Moderate risk — improve habits early":"⚠ මධ්‍යම අවදානම — පුරුදු ඉක්මනින් හොඳ කරන්න",
 "✅ Maintain healthy lifestyle habits":"✅ සෞඛ්‍ය සම්පන්න පුරුදු පවත්වා ගන්න",
 
-# ===== SUPPLEMENTS =====
+#  SUPPLEMENTS 
 "Vitamin D drops":"විටමින් D බිංදු",
 "Iron syrup (if doctor recommends)":"යකඩ සිරප් (වෛද්‍ය උපදෙස් මත)",
 "Multivitamin syrup":"බහු විටමින් සිරප්",
@@ -496,7 +495,7 @@ SI_MAP = {
 "Vitamin D3":"විටමින් D3",
 "Omega 3":"ඔමේගා 3",
 
-# ===== REMINDERS =====
+# REMINDERS 
 "Feed on time 🍼":"වේලාවට පෝෂණය ලබා දෙන්න 🍼",
 "Give soft healthy foods 🍌":"මෘදු සෞඛ්‍ය ආහාර දෙන්න 🍌",
 "Ensure enough sleep 😴":"ප්‍රමාණවත් නින්ද ලබා දෙන්න 😴",
@@ -521,7 +520,7 @@ SI_MAP = {
 "Walk daily 🚶":"දිනපතා ඇවිදින්න 🚶",
 "Keep baby hydrated 💧":"දරුවාට ප්‍රමාණවත් ජලය ලබා දෙන්න 💧",
 
-# ===== STATUS =====
+#  STATUS 
 "Not Applicable":"අදාළ නොවේ"
 
 }

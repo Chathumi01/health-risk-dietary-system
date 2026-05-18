@@ -1,7 +1,7 @@
 import os
 import joblib
 import pandas as pd
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from translator import deep_translate
 
@@ -16,33 +16,25 @@ from dietary_rules import (
     get_pregnancy_cravings
 )
 
-# ================= PATHS =================
+# PATHS 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
-FRONTEND_FOLDER = os.path.join(BASE_DIR, "frontend")
+FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
 
 # if app.py is inside backend folder use this instead:
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
 
-# ================= FLASK APP =================
-
-
+# FLASK APP 
 app = Flask(
     __name__,
     static_folder=FRONTEND_FOLDER,
-    template_folder=FRONTEND_FOLDER
+    static_url_path=""
 )
-@app.route("/")
-def home():
-    return send_from_directory(FRONTEND_FOLDER, "index.html")
 
-@app.route("/<path:path>")
-def static_files(path):
-    return send_from_directory(FRONTEND_FOLDER, path)
 CORS(app)
 
-# ================= FRONTEND ROUTES =================
+#  FRONTEND ROUTES 
 @app.route("/")
 @app.route("/<path:path>")
 def frontend_files(path):
@@ -56,14 +48,14 @@ df.columns = df.columns.str.strip()
 # convert to dictionary
 FOOD_DB = df.set_index("name_en").to_dict(orient="index")
 
-# ================= MODEL =================
+#  MODEL 
 
 try:
     model = joblib.load(os.path.join(BASE_DIR, "../model/rf_model.pkl"))
 except:
     model = None
 
-# ================= SAFE INPUT =================
+# SAFE INPUT 
 
 def safe_int(value, default=0):
     try:
@@ -76,12 +68,12 @@ def safe_float(value, default=0.0):
     except:
           return default
 
-# ================= LANGUAGE =================
+#  LANGUAGE 
 
 def t(en, si, lang):
      return si if lang == "si" else en
 
-# ================= BMI =================
+#  BMI
 
 def get_bmi_status(bmi, lang):
     if bmi < 18.5:
@@ -105,7 +97,7 @@ def get_message(risk, lang):
 
 
 
-# ================= 🔥 CALORIES =================
+# CALORIES
 def calculate_calories(age, gender, height, weight, activity, pregnant=False):
 
     if gender == 0:
@@ -124,7 +116,7 @@ def calculate_calories(age, gender, height, weight, activity, pregnant=False):
         "tdee": round(tdee)
     }
 
-# ================= 🆕 MACROS =================
+# MACROS 
 def calculate_macros(calories):
     protein = (calories * 0.25) / 4
     carbs = (calories * 0.50) / 4
@@ -136,7 +128,7 @@ def calculate_macros(calories):
         "Fat (g)": round(fat),
         "Fiber (g)": 25
     }
-# ================= 🆕 FOOD RECOMMENDER =================
+#  FOOD RECOMMENDER 
 
 def recommend_foods(risk, gender, age, pregnant):
     foods = []
@@ -153,7 +145,7 @@ def recommend_foods(risk, gender, age, pregnant):
 
     return foods
 
-# ================= 🆕 WEEKLY CALORIE BALANCE =================
+#  WEEKLY CALORIE BALANCE 
 
 def calculate_weekly_balance(meal_plan, exercise_plan):
     weekly_intake = sum(
@@ -169,7 +161,7 @@ def calculate_weekly_balance(meal_plan, exercise_plan):
         "net": round(weekly_intake - weekly_burn, 1)
     }
 
-# ================= 🧠 SMART MEAL ENGINE =================
+#  SMART MEAL ENGINE 
 
 def filter_foods_by_diet(diet_type):
     foods = []
@@ -197,7 +189,7 @@ def group_foods(foods):
     return carbs, proteins, vegs
 
 
-# ================= REQUIRED FUNCTIONS =================
+#  REQUIRED FUNCTIONS 
 
 def extract_foods(meal_text):
     meal_text = meal_text.lower()
@@ -250,7 +242,7 @@ def generate_portions(foods, bmi):
 def format_meal(meal):
     return " + ".join([item["name"] for item in meal])
 
-# ================= PORTIONS =================
+#  PORTIONS 
 
 def get_portions(bmi, pregnant):
     if bmi < 18.5:
@@ -268,7 +260,7 @@ def get_portions(bmi, pregnant):
     return rice, protein
 
 
-# ================= PLATE GENERATOR =================
+#  PLATE GENERATOR 
 
 import random
 
@@ -295,7 +287,7 @@ def generate_plate_meal(diet_type, bmi, pregnant):
 """
 
     return meal.strip()
-# ================= 🌾 RURAL FOODS INFO =================
+# RURAL FOODS INFO 
 RURAL_FOODS = [
     {"name": "Gotukola Mallung", "benefit": "Iron rich, improves brain health"},
     {"name": "Kurakkan", "benefit": "High calcium, good for diabetes"},
@@ -344,7 +336,7 @@ def calculate_meal_from_grams(meal):
     }
 
 
-# ================= 🍽️ PORTION CALCULATIONS =================
+# PORTION CALCULATIONS 
 def get_smart_meal_plan(bmi, diet_type, lang, nutrition, pregnant=False, age=25):
 
     days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -421,11 +413,11 @@ def get_smart_meal_plan(bmi, diet_type, lang, nutrition, pregnant=False, age=25)
 
             nonveg_meals = [
                 ("Milk + egg", "Red rice + fish + spinach + Pumpkin Curry", "Fruit juice", "Chicken soup"),
-                ("String hoppers + egg", "Red rice + chicken + pumpkin", "Banana", "Fish curry"),
+                ("String hoppers + egg", "Red rice + chicken + pumpkin", "Banana", "Fish curry + Red rice + dhal"),
                 ("Kurakkan roti + Fish Curry", "Red rice + Egg + dhal + Tempered Brinjals", "Banana", "Chicken soup"),
                 ("Pittu + egg", "Red rice + chicken + beans", "Orange", "Chicken soup"),
                 ("Idli + egg", "Red rice + fish + spinach", "Papaya", "Soup"),
-                ("Bread + omelette", "Red rice + chicken + murunga", "Banana", "Fish curry"),
+                ("Bread + omelette", "Red rice + chicken + murunga", "Banana", "Fish curry + Red rice + salad"),
                 ("Kolakanda + Egg", "Red rice + fish + mallung", "Fruit", "Soup")
             ]
 
@@ -444,12 +436,12 @@ def get_smart_meal_plan(bmi, diet_type, lang, nutrition, pregnant=False, age=25)
         }
 
     return plan
-# ================= 🏃 EXERCISE =================
+#  EXERCISE
 def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
 
-    # =================================================
+    
     # 👶 BABIES / CHILDREN
-    # =================================================
+    
     if age <= 12:
 
         if bmi >= 30:
@@ -485,9 +477,9 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
                 {"day":"Sunday","workout":"Family Walk","time":"25 min","calories_burn":80}
             ]
 
-    # =================================================
+    
     # 🤰 PREGNANT WOMEN
-    # =================================================
+    
     if pregnant and gender == 1:
 
         return [
@@ -500,9 +492,9 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
             {"day":"Sunday","workout":"Rest","time":"-","calories_burn":0}
         ]
 
-    # =================================================
+    
     # 🔴 OBESE
-    # =================================================
+    
     if bmi >= 30:
         return [
             {"day":"Monday","workout":"Fast Walking","time":"60 min","calories_burn":350},
@@ -514,9 +506,8 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
             {"day":"Sunday","workout":"Light Walk","time":"30 min","calories_burn":150}
         ]
 
-    # =================================================
+    
     # 🟠 OVERWEIGHT
-    # =================================================
     elif bmi >= 25:
         return [
             {"day":"Monday","workout":"Walking","time":"45 min","calories_burn":250},
@@ -528,9 +519,9 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
             {"day":"Sunday","workout":"Rest Walk","time":"25 min","calories_burn":100}
         ]
 
-    # =================================================
+    
     # 🟢 NORMAL
-    # =================================================
+    
     return [
         {"day":"Monday","workout":"Walking","time":"30 min","calories_burn":150},
         {"day":"Tuesday","workout":"Farming Work","time":"45 min","calories_burn":250},
@@ -541,7 +532,7 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
         {"day":"Sunday","workout":"Rest","time":"-","calories_burn":0}
     ]
 
-# ================= 💧 WATER =================
+# WATER 
 def get_water(weight, age, gender, activity, pregnant, lang):
     total = (weight * 35) / 1000
 
@@ -562,7 +553,7 @@ def get_water(weight, age, gender, activity, pregnant, lang):
             {"time": t("Before sleep", "නිදියට පෙර", lang), "amount": round(total * 0.10, 1)}
         ]
     }
-# ================= 🧬 PCOS =================
+#  PCOS 
 def get_pcos(gender, age, bmi, pregnant, lang):
     if gender == 1 and 12 <= age <= 45 and not pregnant:
         return {
@@ -574,7 +565,7 @@ def get_pcos(gender, age, bmi, pregnant, lang):
     return {"show": False}
 
 
-# ================= 🆕 NUTRITION BREAKDOWN =================
+# NUTRITION BREAKDOWN 
 def generate_nutrition_breakdown(meal_plan):
 
     totals = {
@@ -699,11 +690,11 @@ def predict():
         addiction = safe_int(data.get("tobacco_alcohol"))
         diet_type = safe_int(data.get("diet_type"))
 
-        # ================= BMI =================
+        #  BMI 
         bmi = round(weight / ((height / 100) ** 2), 2)
         risk = 2 if bmi >= 30 else 1 if bmi >= 25 else 0
 
-        # ================= CALORIES =================
+        # CALORIES 
         cal_data = calculate_calories(age, gender, height, weight, activity, pregnant)
         target_calories = cal_data["tdee"]
 
@@ -711,7 +702,7 @@ def predict():
 
         macros = nutrition["macros"]
 
-        # ================= PLANS =================
+        #  PLANS 
         meal_plan = get_smart_meal_plan(
             bmi, diet_type, lang, nutrition, pregnant, age
         )
@@ -721,7 +712,7 @@ def predict():
 
         )
 
-        # ================= RESPONSE =================
+        #  RESPONSE 
         response = {
             "risk": risk,
             "bmi": bmi,
