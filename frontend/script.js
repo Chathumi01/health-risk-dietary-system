@@ -532,7 +532,7 @@ const data = {
     window.lastUserInput = data;
 
     try{
-        const res = await fetch("/predict", {
+        const res = await fetch("http://127.0.0.1:5001/predict", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
@@ -1304,6 +1304,7 @@ function goBack(){
 
     window.scrollTo({top:0, behavior:"smooth"});
 }
+
 //  INIT 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -1316,20 +1317,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const preg = get("pregnant");
     const chatInput = get("chatInput");
 
-    // SHOW / HIDE PREGNANT 
-    function togglePregnancy() {
+    // SHOW / HIDE PREGNANT + ADDICTION
+    function updateFieldVisibility() {
 
         if (!gender || !pregRow || !preg) return;
 
-        // Male
-        if (gender.value === "0") {
+        const age = parseInt(get("age").value) || 0;
+
+        const addictionGroup = get("addiction").closest(".form-group");
+
+        // =========================
+        // PREGNANT FIELD
+        // =========================
+
+        // Hide below age 12
+        if(age < 12){
             pregRow.style.display = "none";
             preg.value = "0";
         }
 
-        // Female
+        // Female age 12+
         else if (gender.value === "1") {
             pregRow.style.display = "block";
+        }
+
+        // Male
+        else if (gender.value === "0") {
+            pregRow.style.display = "none";
+            preg.value = "0";
         }
 
         // Not selected
@@ -1337,13 +1352,27 @@ document.addEventListener("DOMContentLoaded", () => {
             pregRow.style.display = "none";
             preg.value = "0";
         }
+
+        // =========================
+        // ADDICTION FIELD
+        // =========================
+
+        if(age >= 18){
+            addictionGroup.style.display = "block";
+        } else {
+            addictionGroup.style.display = "none";
+
+            // reset value
+            get("addiction").value = "0";
+        }
     }
 
     // Run first time
-    togglePregnancy();
+    updateFieldVisibility();
 
-    // Change event
-    gender.addEventListener("change", togglePregnancy);
+    // Events
+    gender.addEventListener("change", updateFieldVisibility);
+    get("age").addEventListener("input", updateFieldVisibility);
 
     // Enter key chatbot
     if(chatInput){
