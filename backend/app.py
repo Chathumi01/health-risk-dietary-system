@@ -20,7 +20,9 @@ from dietary_rules import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
-FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
+FRONTEND_FOLDER = os.path.abspath(
+    os.path.join(BASE_DIR, "../frontend")
+)
 
 # if app.py is inside backend folder use this instead:
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
@@ -42,7 +44,10 @@ collection = db["predictions"]
 #  FRONTEND ROUTES 
 @app.route("/")
 def home():
-    return app.send_static_file("index.html")
+    try:
+        return app.send_static_file("index.html")
+    except Exception as e:
+        return str(e), 500
 
 @app.route("/<path:path>")
 def frontend_files(path):
