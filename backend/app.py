@@ -64,7 +64,7 @@ def frontend_files(path):
     return app.send_static_file(path)
 
 CSV_PATH = os.path.abspath(
-    os.path.join(BASE_DIR, "..", "Final_Food.csv")
+    os.path.join(BASE_DIR, "..", "data", "Final_Food.csv")
 )
 
 try:
