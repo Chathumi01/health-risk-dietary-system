@@ -822,12 +822,12 @@ def predict():
             "pregnancy_cravings": get_pregnancy_cravings(pregnant),
         }
 
-        response = deep_translate(response, lang)
+        
         return jsonify(response)
 
     except Exception as e:
-        print("ERROR:", str(e))
-        return jsonify({"error": "Server crash"}), 500
+        print("FULL ERROR:", str(e))
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
