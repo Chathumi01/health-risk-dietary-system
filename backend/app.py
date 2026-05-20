@@ -43,7 +43,9 @@ CORS(app)
 
 # ================= MONGODB =================
 
-MONGO_URI = "mongodb+srv://admin:uJ7AkTEwre2rkY6k@cluster0.mzzugsg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URI = os.getenv("MONGO_URI")
+
+print("MONGO URI:", MONGO_URI)
 
 client = MongoClient(MONGO_URI)
 
