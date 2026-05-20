@@ -4,8 +4,8 @@ import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
-from translator import deep_translate
-from dietary_rules import (
+from backend.translator import deep_translate
+from backend.dietary_rules import (
 
     get_conditions,
     get_foods,
@@ -22,8 +22,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
 FRONTEND_FOLDER = os.path.abspath(
-    os.path.join(BASE_DIR, "../frontend")
+    os.path.join(BASE_DIR, "..", "frontend")
 )
+
 print("FRONTEND PATH:", FRONTEND_FOLDER)
 print("INDEX EXISTS:", os.path.exists(os.path.join(FRONTEND_FOLDER, "index.html")))
 
@@ -62,7 +63,9 @@ def home():
 def frontend_files(path):
     return app.send_static_file(path)
 
-CSV_PATH = os.path.join(BASE_DIR, "Final_Food.csv")
+CSV_PATH = os.path.abspath(
+    os.path.join(BASE_DIR, "..", "Final_Food.csv")
+)
 
 try:
     df = pd.read_csv(CSV_PATH)
@@ -77,8 +80,14 @@ FOOD_DB = df.set_index("name_en").to_dict(orient="index")
 #  MODEL 
 
 try:
-    model = joblib.load(os.path.join(BASE_DIR, "../model/rf_model.pkl"))
+    MODEL_PATH = os.path.abspath(
+        os.path.join(BASE_DIR, "..", "model", "rf_model.pkl")
+    )
+
+    model = joblib.load(MODEL_PATH)
+
     print("MODEL LOADED SUCCESSFULLY")
+
 except Exception as e:
     print("MODEL ERROR:", e)
     model = None
