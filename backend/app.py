@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from backend.translator import deep_translate
 from backend.dietary_rules import (
 
+
     get_conditions,
     get_foods,
     get_avoid,
@@ -40,12 +41,17 @@ app = Flask(
 
 CORS(app)
 
-MONGO_URI = os.getenv("MONGO_URI")
+# ================= MONGODB =================
+
+MONGO_URI = "mongodb+srv://admin:uJ7AkTEwre2rkY6k@cluster0.mzzugsg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 client = MongoClient(MONGO_URI)
 
 db = client["health_risk_db"]
+
 collection = db["predictions"]
+
+print("MongoDB Connected Successfully")
 
 # FRONTEND ROUTES
 @app.route("/")
