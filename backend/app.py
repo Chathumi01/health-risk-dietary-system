@@ -828,8 +828,14 @@ def predict():
         return jsonify(response)
 
     except Exception as e:
-        print("FULL ERROR:", str(e))
-        return jsonify({"error": str(e)}), 500
+        import traceback
+
+        print("FULL ERROR:")
+        traceback.print_exc()
+
+        return jsonify({
+            "error": str(e)
+        }), 500
 
 
 if __name__ == "__main__":
