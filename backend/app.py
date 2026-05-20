@@ -5,7 +5,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from translator import deep_translate
 from pymongo import MongoClient
-
 from dietary_rules import (
     get_conditions,
     get_foods,
@@ -21,7 +20,7 @@ from dietary_rules import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
-FRONTEND_FOLDER = os.path.join(BASE_DIR, "frontend")
+FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
 
 # if app.py is inside backend folder use this instead:
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
@@ -194,8 +193,6 @@ def group_foods(foods):
             vegs.append(name)
 
     return carbs, proteins, vegs
-
-
 #  REQUIRED FUNCTIONS 
 
 def extract_foods(meal_text):
@@ -342,7 +339,6 @@ def calculate_meal_from_grams(meal):
         "fiber": round(total["fiber"], 1)
     }
 
-
 # PORTION CALCULATIONS 
 def get_smart_meal_plan(bmi, diet_type, lang, nutrition, pregnant=False, age=25):
 
@@ -446,7 +442,6 @@ def get_smart_meal_plan(bmi, diet_type, lang, nutrition, pregnant=False, age=25)
 #  EXERCISE
 def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
 
-    
     # 👶 BABIES / CHILDREN
     
     if age <= 12:
@@ -484,7 +479,6 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
                 {"day":"Sunday","workout":"Family Walk","time":"25 min","calories_burn":80}
             ]
 
-    
     # 🤰 PREGNANT WOMEN
     
     if pregnant and gender == 1:
@@ -499,7 +493,6 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
             {"day":"Sunday","workout":"Rest","time":"-","calories_burn":0}
         ]
 
-    
     # 🔴 OBESE
     
     if bmi >= 30:
@@ -513,7 +506,6 @@ def get_exercise_plan(bmi, lang, pregnant=False, age=25, gender=0):
             {"day":"Sunday","workout":"Light Walk","time":"30 min","calories_burn":150}
         ]
 
-    
     # 🟠 OVERWEIGHT
     elif bmi >= 25:
         return [
