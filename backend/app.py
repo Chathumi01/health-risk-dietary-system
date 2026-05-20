@@ -4,8 +4,8 @@ import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
-from backend.translator import deep_translate
-from backend.dietary_rules import (
+from translator import deep_translate
+from dietary_rules import (
 
 
     get_conditions,
@@ -47,20 +47,13 @@ MONGO_URI = os.getenv("MONGO_URI")
 
 print("MONGO URI:", MONGO_URI)
 
-if not MONGO_URI:
-    raise Exception("MONGO_URI environment variable not found")
-
 client = MongoClient(MONGO_URI)
-client.admin.command("ping")
-
-print("MongoDB Connected Successfully")
 
 db = client["health_risk_db"]
 
 collection = db["predictions"]
 
 print("MongoDB Connected Successfully")
-
 # FRONTEND ROUTES
 @app.route("/")
 def home():
@@ -723,40 +716,55 @@ def predict():
         height = safe_float(data.get("height"))
         weight = safe_float(data.get("weight"))
 
-        gender_map = {"Male":0, "Female":1}
+        gender_map = {"Male": 0, "Female": 1}
         gender = gender_map.get(data.get("gender"), 0)
 
         pregnant_value = str(data.get("pregnant")).strip().lower()
         pregnant = pregnant_value in ["yes", "true", "1"]
 
-        
         activity = safe_int(data.get("activity"))
         addiction = safe_int(data.get("tobacco_alcohol"))
         diet_type = safe_int(data.get("diet_type"))
 
-        #  BMI 
-        # BMI
         bmi = round(weight / ((height / 100) ** 2), 2)
         risk = 2 if bmi >= 30 else 1 if bmi >= 25 else 0
 
-        # SAVE TO MONGODB
-        collection.insert_one({
-            "age": age,
-            "gender": gender,
-            "height": height,
-            "weight": weight,
-            "bmi": bmi,
-            "risk": risk,
-            "diet_type": diet_type,
-            "activity": activity,
-            "pregnant": pregnant
-        })
+        # MongoDB Save
+        try:
+            collection.insert_one({
+                "age": age,
+                "gender": gender,
+                "height": height,
+                "weight": weight,
+                "bmi": bmi,
+                "risk": risk,
+                "diet_type": diet_type,
+                "activity": activity,
+                "pregnant": pregnant
+            })
 
-        # CALORIES 
-        cal_data = calculate_calories(age, gender, height, weight, activity, pregnant)
+        except Exception as db_error:
+            print("MongoDB Save Error:", db_error)
+
+        # CALORIES
+        cal_data = calculate_calories(
+            age,
+            gender,
+            height,
+            weight,
+            activity,
+            pregnant
+        )
+
         target_calories = cal_data["tdee"]
 
-        nutrition = get_nutrition(risk, gender, age, pregnant, lang) or {}
+        nutrition = get_nutrition(
+            risk,
+            gender,
+            age,
+            pregnant,
+            lang
+        ) or {}
 
         macros = nutrition.get("macros", {
             "Protein (g)": 0,
@@ -765,24 +773,31 @@ def predict():
             "Fiber (g)": 25
         })
 
-        #  PLANS 
+        # PLANS
         meal_plan = get_smart_meal_plan(
-            bmi, diet_type, lang, nutrition, pregnant, age
+            bmi,
+            diet_type,
+            lang,
+            nutrition,
+            pregnant,
+            age
         )
 
         exercise_plan = get_exercise_plan(
-             bmi, lang, pregnant, age, gender
-
+            bmi,
+            lang,
+            pregnant,
+            age,
+            gender
         )
 
-        #  RESPONSE 
+        # RESPONSE
         response = {
             "risk": risk,
             "bmi": bmi,
             "bmi_status": get_bmi_status(bmi, lang),
             "message": get_message(risk, lang),
 
-            # ✅ NEW CALORIE CARD DATA
             "calorie_target": {
                 "daily": target_calories,
                 "macros": macros,
@@ -791,27 +806,46 @@ def predict():
 
             "calories": cal_data,
 
-            "conditions": get_conditions(bmi, activity, addiction, gender, age, pregnant, lang),
+            "conditions": get_conditions(
+                bmi, activity, addiction,
+                gender, age, pregnant, lang
+            ),
+
             "foods": get_foods(risk, lang, age),
             "avoid": get_avoid(risk, lang, age),
-            "supplements": get_supplements(bmi, gender, age, pregnant, lang),
+
+            "supplements": get_supplements(
+                bmi, gender, age, pregnant, lang
+            ),
+
             "nutrition": nutrition,
+
             "weekly_meal_plan": meal_plan,
+
             "exercise_plan": exercise_plan,
 
             "food_recommendations": recommend_foods(
-                risk, gender, age, pregnant
+                risk,
+                gender,
+                age,
+                pregnant
             ),
 
             "calorie_balance": calculate_weekly_balance(
-                meal_plan, exercise_plan
+                meal_plan,
+                exercise_plan
             ),
+
             "daily_analysis": generate_daily_analysis(
                 meal_plan,
                 exercise_plan,
                 target_calories
             ),
-            "nutrition_breakdown": generate_nutrition_breakdown(meal_plan),
+
+            "nutrition_breakdown": generate_nutrition_breakdown(
+                meal_plan
+            ),
+
             "warnings": get_warnings(
                 pregnant,
                 addiction,
@@ -821,16 +855,39 @@ def predict():
                 lang,
                 age
             ),
+
             "reminders": get_reminders(
-                risk, activity, lang, pregnant, age
+                risk,
+                activity,
+                lang,
+                pregnant,
+                age
             ),
-            "water": get_water(weight, age, gender, activity, pregnant, lang),
-            "pcos": get_pcos(gender, age, bmi, pregnant, lang),
+
+            "water": get_water(
+                weight,
+                age,
+                gender,
+                activity,
+                pregnant,
+                lang
+            ),
+
+            "pcos": get_pcos(
+                gender,
+                age,
+                bmi,
+                pregnant,
+                lang
+            ),
+
             "rural_foods": RURAL_FOODS,
-            "pregnancy_cravings": get_pregnancy_cravings(pregnant),
+
+            "pregnancy_cravings": get_pregnancy_cravings(
+                pregnant
+            )
         }
 
-        
         return jsonify(response)
 
     except Exception as e:
@@ -842,7 +899,6 @@ def predict():
         return jsonify({
             "error": str(e)
         }), 500
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001)
