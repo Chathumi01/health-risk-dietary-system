@@ -47,7 +47,13 @@ MONGO_URI = os.getenv("MONGO_URI")
 
 print("MONGO URI:", MONGO_URI)
 
+if not MONGO_URI:
+    raise Exception("MONGO_URI environment variable not found")
+
 client = MongoClient(MONGO_URI)
+client.admin.command("ping")
+
+print("MongoDB Connected Successfully")
 
 db = client["health_risk_db"]
 
