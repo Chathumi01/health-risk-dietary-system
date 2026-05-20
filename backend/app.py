@@ -3,10 +3,10 @@ import joblib
 import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from translator import deep_translate
 from pymongo import MongoClient
+from backend.translator import deep_translate
 
-from dietary_rules import (
+from backend.dietary_rules import (
     get_conditions,
     get_foods,
     get_avoid,
