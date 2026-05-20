@@ -21,7 +21,11 @@ from dietary_rules import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
-FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
+FRONTEND_FOLDER = os.path.abspath(
+    os.path.join(BASE_DIR, "../frontend")
+)
+print("FRONTEND PATH:", FRONTEND_FOLDER)
+print("INDEX EXISTS:", os.path.exists(os.path.join(FRONTEND_FOLDER, "index.html")))
 
 # if app.py is inside backend folder use this instead:
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
@@ -42,14 +46,17 @@ client = MongoClient(MONGO_URI)
 db = client["health_risk_db"]
 collection = db["predictions"]
 
-#  FRONTEND ROUTES 
+# FRONTEND ROUTES
 @app.route("/")
 def home():
-    try:
-        return app.send_static_file("index.html")
-    except Exception as e:
-        print("HOME ERROR:", e)
-        return str(e), 500
+    index_path = os.path.join(FRONTEND_FOLDER, "index.html")
+
+    print("TRYING TO LOAD:", index_path)
+
+    if not os.path.exists(index_path):
+        return f"index.html not found at {index_path}", 500
+
+    return app.send_static_file("index.html")
 
 @app.route("/<path:path>")
 def frontend_files(path):
