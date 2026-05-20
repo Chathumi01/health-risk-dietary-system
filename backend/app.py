@@ -63,7 +63,9 @@ def home():
 def frontend_files(path):
     return app.send_static_file(path)
 
-CSV_PATH = os.path.join(BASE_DIR, "data", "Final_Food.csv")
+CSV_PATH = os.path.abspath(
+    os.path.join(BASE_DIR, "..", "data", "Final_Food.csv")
+)
 
 try:
     df = pd.read_csv(CSV_PATH)
