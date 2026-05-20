@@ -34,7 +34,9 @@ app = Flask(
 
 CORS(app)
 
-client = MongoClient("mongodb://localhost:27017/")
+MONGO_URI = os.getenv("MONGO_URI")
+
+client = MongoClient(MONGO_URI)
 db = client["health_risk_db"]
 collection = db["predictions"]
 #  FRONTEND ROUTES 
