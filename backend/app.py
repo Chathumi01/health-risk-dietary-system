@@ -4,8 +4,8 @@ import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
-from translator import deep_translate
-from dietary_rules import (
+from backend.translator import deep_translate
+from backend.dietary_rules import (
 
 
     get_conditions,
