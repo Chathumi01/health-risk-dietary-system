@@ -45,7 +45,11 @@ collection = db["predictions"]
 #  FRONTEND ROUTES 
 @app.route("/")
 def home():
-    return app.send_static_file("index.html")
+    try:
+        return app.send_static_file("index.html")
+    except Exception as e:
+        print("HOME ERROR:", e)
+        return str(e), 500
 
 @app.route("/<path:path>")
 def frontend_files(path):
@@ -67,7 +71,9 @@ FOOD_DB = df.set_index("name_en").to_dict(orient="index")
 
 try:
     model = joblib.load(os.path.join(BASE_DIR, "../model/rf_model.pkl"))
-except:
+    print("MODEL LOADED SUCCESSFULLY")
+except Exception as e:
+    print("MODEL ERROR:", e)
     model = None
 
 # SAFE INPUT 
