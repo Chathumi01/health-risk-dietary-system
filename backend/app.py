@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from translator import deep_translate
 from pymongo import MongoClient
+
 from dietary_rules import (
     get_conditions,
     get_foods,
@@ -20,9 +21,7 @@ from dietary_rules import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # frontend folder is in project root
-FRONTEND_FOLDER = os.path.abspath(
-    os.path.join(BASE_DIR, "../frontend")
-)
+FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
 
 # if app.py is inside backend folder use this instead:
 # FRONTEND_FOLDER = os.path.join(BASE_DIR, "..", "frontend")
@@ -36,18 +35,13 @@ app = Flask(
 
 CORS(app)
 
-MONGO_URI = os.getenv("MONGO_URI")
-
-client = MongoClient(MONGO_URI)
+client = MongoClient("mongodb://localhost:27017/")
 db = client["health_risk_db"]
 collection = db["predictions"]
 #  FRONTEND ROUTES 
 @app.route("/")
 def home():
-    try:
-        return app.send_static_file("index.html")
-    except Exception as e:
-        return str(e), 500
+    return app.send_static_file("index.html")
 
 @app.route("/<path:path>")
 def frontend_files(path):
@@ -55,7 +49,11 @@ def frontend_files(path):
 
 CSV_PATH = os.path.join(BASE_DIR, "Final_Food.csv")
 
-df = pd.read_csv(CSV_PATH)
+try:
+    df = pd.read_csv(CSV_PATH)
+except Exception as e:
+    print("CSV ERROR:", e)
+    raise
 df.columns = df.columns.str.strip()   
 
 # convert to dictionary
