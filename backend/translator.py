@@ -1,3 +1,4 @@
+import re
 SI_MAP = {
 
 #  GENERAL 
@@ -400,7 +401,7 @@ SI_MAP = {
 "Popcorn":"පොප්කෝන්",
 "Spicy food":"කටුක ආහාර",
 "Chocolates daily":"දිනපතා චොකලට්",
-"Fast food":"ෆාස්ට් ෆුඩ්",
+"Fast food":"කෙටි ආහා​ර",
 "Deep fried food":"ගැඹුරු තෙලේ බැදපු ආහාර",
 "Bakery Items":"බේකරි ආහාර",
 "Ice cream":"අයිස් ක්‍රීම්",
@@ -452,7 +453,7 @@ SI_MAP = {
 "⚠ Weight should be monitored early":"⚠ බර කලින් සිටම නිරීක්ෂණය කරන්න",
 "⚠ Underweight may affect development":"⚠ අඩු බර වර්ධනයට බලපායි",
 
-"🍔 Junk food may cause unhealthy weight gain":"🍔 ජන්ක් ෆුඩ් අහිතකර බර වැඩිවීමට හේතු වේ",
+"🍔 Junk food may cause unhealthy weight gain":"🍔 කෙටි ආහා​රර අහිතකර බර වැඩිවීමට හේතු වේ",
 "😴 Poor sleep affects learning and hormones":"😴 නින්ද අඩුවීම ඉගෙනීම හා හෝමෝන වලට බලපායි",
 "⚠ Low activity reduces fitness":"⚠ අඩු ක්‍රියාකාරිත්වය යෝග්‍යතාව අඩු කරයි",
 "🚨 Teen obesity needs early action":"🚨 යෞවන තරබාරුවට ඉක්මන් ක්‍රියාමාර්ග අවශ්‍යයි",
@@ -487,10 +488,10 @@ SI_MAP = {
 "Iron syrup (if doctor recommends)":"යකඩ සිරප් (වෛද්‍ය උපදෙස් මත)",
 "Multivitamin syrup":"බහු විටමින් සිරප්",
 "Calcium syrup":"කැල්සියම් සිරප්",
-"Vitamin C chewable":"විටමින් C චුවබල්",
+"Vitamin C chewable":"විටමින් C හැපීම​ට",
 "Folic Acid":"ෆෝලික් අම්ලය",
 "Prenatal Vitamins":"ගර්භණී විටමින්",
-"Multivitamin chewable":"බහු විටමින් චුවබල්",
+"Multivitamin chewable":"බහු විටමින් හැපීම​ට",
 "Mass Gainer (doctor approved)":"බර වැඩි කරන සප්ලිමන්ට් (වෛද්‍ය අනුමැතියෙන්)",
 "Vitamin D3":"විටමින් D3",
 "Omega 3":"ඔමේගා 3",
@@ -520,24 +521,76 @@ SI_MAP = {
 "Walk daily 🚶":"දිනපතා ඇවිදින්න 🚶",
 "Keep baby hydrated 💧":"දරුවාට ප්‍රමාණවත් ජලය ලබා දෙන්න 💧",
 
+# FIX MISSING WORDS
+
+"Sri Lankan Meal Plan":"ශ්‍රී ලාංකික ආහාර සැලැස්ම",
+
+"Recommended Foods":"නිර්දේශිත ආහාර",
+"Avoid Foods":"වැළකිය යුතු ආහාර",
+"Supplements":"අතිරේක පෝෂක",
+"Critical Warnings":"වැදගත් අනතුරු ඇඟවීම්",
+"BMI Related Risks":"BMI සම්බන්ධ අවදානම්",
+
+"Daily Calorie Comparison":"දෛනික කැලරි සැසඳීම",
+
+"Day":"දිනය",
+"Breakfast":"උදෑසන ආහාරය",
+"Lunch":"දිවා ආහාරය",
+"Snack":"අතුරුපස",
+"Dinner":"රාත්‍රී ආහාරය",
+
+"Workout":"ව්‍යායාමය",
+"Time":"වේලාව",
+
+"Intake":"ලබාගත්",
+"Burn":"දහනය කළ",
+"Target":"ඉලක්කය",
+
+# FOOD FIXES
+"Mashroom":"හතු",
+"Mango curry":"අඹ කරි",
+"Vegetable roti":"එළවළු රොටි",
+
+# MIXED WORDS
+"milk":"කිරි",
+"syrup":"සිරප්",
+
+# EXTRA FIXES
+"Fruit juice":"පළතුරු යුෂ",
+"Soup":"සුප්",
+"Vegetables":"එළවළු",
+"Protein foods":"ප්‍රෝටීන් ආහාර",
+"Balanced meals":"සමබර ආහාර",
+
 #  STATUS 
 "Not Applicable":"අදාළ නොවේ"
 
 }
 
 def translate_text(text, lang="en"):
+
     if lang != "si":
         return text
 
     if not isinstance(text, str):
         return text
 
+    # remove extra spaces
+    text = text.strip()
+
     for en, si in sorted(SI_MAP.items(), key=lambda x: len(x[0]), reverse=True):
-        text = text.replace(en, si)
+
+        # regex safe replacement
+        pattern = re.escape(en)
+
+        text = re.sub(
+            pattern,
+            si,
+            text,
+            flags=re.IGNORECASE
+        )
 
     return text
-
-
 def deep_translate(data, lang="en"):
     if isinstance(data, dict):
         return {k: deep_translate(v, lang) for k, v in data.items()}

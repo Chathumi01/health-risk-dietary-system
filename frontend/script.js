@@ -159,7 +159,7 @@ function setLang(lang){
         lang==="si" ? "සෞඛ්‍ය මිනුම්" : "Health Metrics";
 
     get("stat2").innerText =
-        lang==="si" ? "ආහාර සැලසුම්" : "Meal Plans";
+        lang==="si" ? "7-දින ආහාර සැලසුම්" : "7-Day Meal Plans";
 
     get("stat3").innerText =
         lang==="si" ? "පුද්ගලික" : "Personalized";
@@ -228,12 +228,71 @@ lang==="si"
 ? "⚠️ ජීවන රටා අවදානම් සාධක"
 : "⚠️ Lifestyle Risk Factors";
 
+get("bmiTitle").innerText =
+lang==="si"
+? "📊 BMI තත්ත්වය"
+: "📊 BMI Status";
+
 get("pcosTitle").innerText =
 lang==="si"
 ? "🧬 PCOS පරීක්ෂාව"
 : "🧬 PCOS Screening";
+get("mealPlanTitle").innerText =
+lang==="si"
+? "🍽️ ශ්‍රී ලාංකික ආහාර සැලැස්ම"
+: "🍽️ Sri Lankan Meal Plan";
 
-get("bmiTitle").innerText =
+get("thDay").innerText =
+lang==="si" ? "දිනය" : "Day";
+
+get("thBreakfast").innerText =
+lang==="si" ? "උදෑසන ආහාරය" : "Breakfast";
+
+get("thLunch").innerText =
+lang==="si" ? "දිවා ආහාරය" : "Lunch";
+
+get("thSnack").innerText =
+lang==="si" ? "අතුරුපස" : "Snack";
+
+get("thDinner").innerText =
+lang==="si" ? "රාත්‍රී ආහාරය" : "Dinner";
+
+get("thWorkout").innerText =
+lang==="si" ? "ව්‍යායාමය" : "Workout";
+
+get("thTime").innerText =
+lang==="si" ? "වේලාව" : "Time";
+get("calorieCompareTitle").innerText =
+lang==="si"
+? "📊 දෛනික කැලරි සැසඳීම"
+: "📊 Daily Calorie Comparison";
+
+get("foodTitle").innerText =
+lang==="si"
+? "🍎 නිර්දේශිත ආහාර"
+: "🍎 Recommended Foods";
+
+get("avoidTitle").innerText =
+lang==="si"
+? "🚫 වැළකිය යුතු ආහාර"
+: "🚫 Avoid Foods";
+
+get("supplementTitle").innerText =
+lang==="si"
+? "💊 අතිරේක පෝෂක"
+: "💊 Supplements";
+
+get("warningTitle").innerText =
+lang==="si"
+? "⚠ වැදගත් අනතුරු ඇඟවීම්"
+: "⚠ Critical Warnings";
+
+get("reminderTitle").innerText =
+lang==="si"
+? "🔔 මතක් කිරීම්"
+: "🔔 Reminders";
+
+get("bmiRiskTitle").innerText =
 lang==="si"
 ? "📊 BMI ආශ්‍රිත අවදානම්"
 : "📊 BMI Related Risks";
@@ -413,25 +472,47 @@ function renderCalorieGraph(data){
     if(window.calChart) window.calChart.destroy();
 
     window.calChart = new Chart(ctx,{
+
         type:"bar",
+
         data:{
-            labels:data.map(x=>x.day),
+
+            labels:data.map(x =>
+                currentLang === "si"
+                ? translateDay(x.day)
+                : x.day
+            ),
+
             datasets:[
+
                 {
-                    label:"Intake",
+                    label: currentLang==="si"
+                        ? "ලබාගත්"
+                        : "Intake",
+
                     data:data.map(x=>x.intake)
                 },
+
                 {
-                    label:"Burn",
+                    label: currentLang==="si"
+                        ? "දහනය කළ"
+                        : "Burn",
+
                     data:data.map(x=>x.burn)
                 },
+
                 {
-                    label:"Target",
+                    label: currentLang==="si"
+                        ? "ඉලක්කය"
+                        : "Target",
+
                     data:data.map(x=>x.target),
+
                     type:"line"
                 }
             ]
         },
+
         options:{
             responsive:true,
             maintainAspectRatio:false

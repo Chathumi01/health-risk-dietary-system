@@ -888,7 +888,9 @@ def predict():
             )
         }
 
-        return jsonify(response)
+        translated_response = deep_translate(response, lang)
+
+        return jsonify(translated_response)
 
     except Exception as e:
         import traceback
