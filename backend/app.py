@@ -4,6 +4,10 @@ import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from backend.translator import deep_translate
 from backend.dietary_rules import (
 
@@ -47,7 +51,11 @@ MONGO_URI = os.getenv("MONGO_URI")
 
 print("MONGO URI:", MONGO_URI)
 
-client = MongoClient(MONGO_URI)
+client = MongoClient(
+    MONGO_URI,
+    tls=True,
+    tlsAllowInvalidCertificates=True
+)
 
 db = client["health_risk_db"]
 
