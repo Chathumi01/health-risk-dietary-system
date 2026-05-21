@@ -4,22 +4,22 @@ AI-powered bilingual health risk prediction and dietary recommendation system us
 
 ---
 
-## 🚀 Features
+##  Features
 
-- ✅ BMI Analysis
-- ✅ PCOS Risk Screening
-- ✅ Personalized Meal Plans
-- ✅ Exercise Recommendations
-- ✅ Water Intake Tracking
-- ✅ Lifestyle Risk Detection
-- ✅ Pregnancy Cravings Guidance
-- ✅ Sinhala & English Language Support
-- ✅ AI-Based Health Insights
-- ✅ Interactive Dashboard UI
+-  BMI Analysis
+-  PCOS Risk Screening
+-  Personalized Meal Plans
+-  Exercise Recommendations
+-  Water Intake Tracking
+-  Lifestyle Risk Detection
+-  Pregnancy Cravings Guidance
+-  Sinhala & English Language Support
+-  AI-Based Health Insights
+-  Interactive Dashboard UI
 
 ---
 
-## 🧠 Technologies Used
+##  Technologies Used
 
 ### Frontend
 - HTML
@@ -37,13 +37,34 @@ AI-powered bilingual health risk prediction and dietary recommendation system us
 - Joblib
 
 ### Deployment
-- Render
+- Railway
+- MongoDB Atlas
+
+---
+
+## 🌐 Live Demo
+
+https://health-risk-dietary-system-production.up.railway.app
+
+---
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/Chathumi01/health-risk-dietary-system.git
+
+cd health-risk-dietary-system
+
+pip install -r requirements.txt
+
+python3 -m backend.app
+```
 
 ---
 
 ## 📂 Project Structure
 
-```bash
+```plaintext
 health-risk-dietary-system
 │
 ├── backend/
@@ -54,5 +75,28 @@ health-risk-dietary-system
 ├── README.md
 ├── requirements.txt
 ├── Procfile
+```
 
+---
 
+## 🔐 Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+```
+
+---
+
+## 👩‍💻 Author
+
+Chathumi Gurugamage
+
+- GitHub: https://github.com/Chathumi01
+
+---
+
+## 📄 License
+
+This project is developed for educational and research purposes.
