@@ -1,0 +1,80 @@
+Feature,Importance
+fruit_score,0.09402112978354855
+weight,0.06438717656307771
+meal_score,0.05823146195130452
+height,0.05744036815377504
+sunlight_score,0.04814193159061001
+disease_score,0.04425737759974319
+vegetable_score,0.038592150204561054
+No_Familymembers,0.03836895533605196
+meals_per_day_3,0.027378001971244192
+addiction,0.026110794714502967
+age,0.0222440175707959
+activity_score,0.02032941353472288
+Tobacco_Alcohol_Use_Unknown,0.0196432310641808
+sleep_score,0.017838642714204368
+protein_score,0.016441120303815615
+diabetes,0.016244226035875182
+Supplements_Used_Unknown,0.015500154495107986
+meals_per_day_2,0.01385741017645664
+fatigue_score,0.013563418152399835
+Food_Allergy_Yes,0.013480223967550279
+district_Galle,0.012629008599610601
+Cooking_Oil_Type_Coconut Oil,0.012092752641606279
+Tobacco_Alcohol_Use_Tobacco,0.011912706039062276
+bp,0.011899039601584577
+Breastfeeding_Status_Yes,0.011832591731430248
+gender_Male,0.011553423609621154
+main food_Bread,0.01147862674896848
+Tobacco_Alcohol_Use_Both,0.011275443599792606
+Cooking_Oil_Type_Olive Oil,0.010877501107218798
+Cooking_Oil_Type_Sunflower Oil,0.010636131356361095
+Pregnant_Status_Yes,0.010412773975794301
+Supplements_Used_Vitamin D,0.010407147575759978
+main food_Curry,0.010353029825542714
+main food_Pasta,0.009324203680014726
+education_Secondary,0.009183520925405133
+main food_Salad,0.009166504969334502
+Menstrual_Regularity_No,0.009151172419113552
+main food_Rice,0.009138932532592224
+education_Master's,0.008679264805158224
+district_Colombo,0.008671994731715793
+main food_Noodles,0.008652083661847962
+Menstrual_Regularity_Yes,0.008460988280347371
+education_High School,0.008396703691394477
+cholesterol,0.00817265832551622
+education_Bachelor's,0.008131177658554877
+Supplements_Used_Multivitamin,0.008033590544133067
+education_PhD,0.007810461479603636
+Cooking_Oil_Type_Vegetable Oil,0.007788704835253459
+education_Diploma,0.007277455785005812
+education_Primary,0.007003293621550505
+district_Hambanthota,0.006594846790014979
+district_Mathara,0.006480684300033221
+district_Kurunagala,0.006117609304900725
+district_Anuradhapura,0.0037900431379652515
+district_Kandy,0.002481384985871777
+district_Gampaha,0.002289713899049043
+district_Kaluthara,0.0021805417770724617
+district_Unknown,0.0018243899852371473
+district_Monaragala,0.0016773121547101187
+meals_per_day_3 Meals,0.0016320661675909222
+Cooking_Oil_Type_Coconut oil,0.0012333701960909364
+education_Bachelor’s degree,0.0010948363831455644
+district_Trincomalee,0.0010855760883879675
+district_Ratnapura,0.0009983422292662875
+thyroid,0.0007363505673058071
+Menstrual_Regularity_Regular,0.0005463457948118607
+meals_per_day_5,0.0005181573056406814
+Cooking_Oil_Type_Vegetable/Mixed oil,0.00029378013385842743
+education_Diploma / Vocational training,0.0002821896853528723
+district_Kalutara,0.00027290253584859607
+meals_per_day_4,0.0002665853820753825
+meals_per_day_2 Meals,0.00025057254813529704
+Cooking_Oil_Type_Olive oil,0.0002401232399911971
+"Supplements_Used_Vitamin D, Multivitamin",0.0002335369308834084
+Menstrual_Regularity_Irregular,0.0001820816384724984
+education_Postgraduate degree (Master’s / PhD),0.00016966128359228595
+district_Kurunegala,5.290131227186732e-05
+"Supplements_Used_Iron, Folate (Folic Acid), Vitamin D, Calcium",0.0
+meals_per_day_4 or more Meals,0.0
